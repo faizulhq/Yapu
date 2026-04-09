@@ -7,23 +7,34 @@ export const metadata: Metadata = {
   title: "Program",
   description: "Lihat semua program YAPU — sosial, kesehatan, lingkungan, keagamaan, pendidikan, dan ekonomi.",
 };
-
 export const revalidate = 60;
 
+/* Cloudinary photos per program slug */
+const PROGRAM_PHOTOS: Record<string, string> = {
+  "bakti-sosial-ramadan":     "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9657_ew9nrw.jpg",
+  "santunan-anak-yatim":      "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9741_bk8fq5.jpg",
+  "khitanan-massal":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
+  "operasi-katarak":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
+  "tanam-pohon":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_1634_px9rdk.jpg",
+  "pasar-murah":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9577_qfdynt.jpg",
+  "pengajian-umum":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9573_datase.jpg",
+  "program-qurban":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537365/IMG_1231_ml5syv.jpg",
+};
+
 const CATEGORY_TABS = [
-  { id: "all", label: "Semua" },
-  { id: "sosial", label: "Sosial" },
-  { id: "kesehatan", label: "Kesehatan" },
+  { id: "all",        label: "Semua" },
+  { id: "sosial",     label: "Sosial" },
+  { id: "kesehatan",  label: "Kesehatan" },
   { id: "lingkungan", label: "Lingkungan" },
-  { id: "keagamaan", label: "Keagamaan" },
+  { id: "keagamaan",  label: "Keagamaan" },
   { id: "pendidikan", label: "Pendidikan" },
-  { id: "ekonomi", label: "Ekonomi" },
+  { id: "ekonomi",    label: "Ekonomi" },
 ];
 
-const statusColors: Record<string, string> = {
-  aktif: "bg-green-100 text-green-700",
-  selesai: "bg-gray-100 text-gray-600",
-  terencana: "bg-blue-100 text-blue-700",
+const statusColor: Record<string, string> = {
+  aktif:    "text-green-700",
+  selesai:  "text-on-surface-variant",
+  terencana:"text-blue-600",
 };
 
 export default async function ProgramPage({
@@ -33,83 +44,131 @@ export default async function ProgramPage({
 }) {
   const params = await searchParams;
   const category = params.category;
-  const programs = await getPrograms(category !== "all" ? category : undefined).catch(() => []);
+  const programs = await getPrograms(category && category !== "all" ? category : undefined).catch(() => []);
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-28 pb-16 px-4 bg-gradient-to-br from-[#2D5016] to-[#1e3710]">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="text-[#E8A020] font-semibold text-sm uppercase tracking-wider">Program Kami</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mt-3 mb-4">Program YAPU</h1>
-          <p className="text-green-200 max-w-2xl mx-auto">
-            Beragam program nyata yang menjangkau umat di berbagai bidang kehidupan
-          </p>
+      {/* ── HERO 2 KOLOM ── */}
+      <section className="relative pt-28 pb-20 bg-gradient-to-br from-primary to-primary-container overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.06]">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-white translate-x-1/3 -translate-y-1/3" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Teks */}
+            <div>
+              <nav className="flex items-center gap-2 text-xs text-on-primary/50 mb-8" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <Link href="/" className="hover:text-on-primary transition-colors">Beranda</Link>
+                <span className="material-symbols-outlined text-sm">chevron_right</span>
+                <span className="text-on-primary/80">Program</span>
+              </nav>
+              <div className="flex items-center gap-3 text-secondary-container font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <span className="w-8 h-0.5 bg-secondary-container" />
+                Program YAPU
+              </div>
+              <h1 className="text-5xl font-extrabold text-on-primary leading-tight mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                Program Nyata untuk Umat
+              </h1>
+              <p className="text-on-primary/70 leading-relaxed max-w-lg">
+                Beragam program yang berdampak langsung pada kehidupan nyata masyarakat — dari sosial, kesehatan, lingkungan, keagamaan, hingga pemberdayaan ekonomi.
+              </p>
+            </div>
+            {/* Foto grid rotasi */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9657_ew9nrw.jpg",
+                "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9741_bk8fq5.jpg",
+                "https://res.cloudinary.com/drturcggf/image/upload/v1775537364/DSC05826_xhe3nn.jpg",
+                "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
+              ].map((src, i) => (
+                <div
+                  key={i}
+                  className="relative h-36 rounded-2xl overflow-hidden shadow-lg"
+                  style={{ transform: i % 2 === 0 ? "rotate(-1.5deg)" : "rotate(1.5deg)" }}
+                >
+                  <Image src={src} alt="" fill className="object-cover" unoptimized />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-[#F5F5F5]">
+      {/* ── FILTER + GRID ── */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-surface-container-low">
         <div className="max-w-7xl mx-auto">
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {CATEGORY_TABS.map((tab) => (
-              <Link
-                key={tab.id}
-                href={tab.id === "all" ? "/program" : `/program?category=${tab.id}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  (category === tab.id) || (!category && tab.id === "all")
-                    ? "bg-[#2D5016] text-white shadow-md"
-                    : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-                }`}
-              >
-                {tab.label}
-              </Link>
-            ))}
+          {/* Filter tabs */}
+          <div className="flex flex-wrap gap-3 mb-10">
+            {CATEGORY_TABS.map((tab) => {
+              const isActive = category === tab.id || (!category && tab.id === "all");
+              return (
+                <Link
+                  key={tab.id}
+                  href={tab.id === "all" ? "/program" : `/program?category=${tab.id}`}
+                  className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+                    isActive
+                      ? "bg-primary text-on-primary shadow-md"
+                      : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border border-outline-variant/20"
+                  }`}
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  {tab.label}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {programs.map((program) => (
-              <Link
-                key={program.id}
-                href={`/program/${program.slug}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-gray-100"
-              >
-                <div className="relative h-52 overflow-hidden">
-                  {program.image ? (
-                    <Image
-                      src={program.image}
-                      alt={program.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-green-100 to-green-200" />
-                  )}
-                  <div className="absolute top-3 left-3">
-                    <span className="text-xs bg-white/90 text-[#2D5016] font-semibold px-2 py-1 rounded-full">
+          {/* Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {programs.map((program) => {
+              const photo = PROGRAM_PHOTOS[program.slug] || program.image;
+              return (
+                <Link
+                  key={program.id}
+                  href={`/program/${program.slug}`}
+                  className="group bg-surface-container-lowest rounded-[1.5rem] overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col"
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    {photo ? (
+                      <Image
+                        src={photo}
+                        alt={program.title}
+                        fill
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-primary-fixed to-primary-fixed-dim" />
+                    )}
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-primary text-[10px] font-black uppercase px-3 py-1.5 rounded-full">
                       {program.category_display}
-                    </span>
+                    </div>
                   </div>
-                  <div className="absolute top-3 right-3">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-full ${statusColors[program.status]}`}>
-                      {program.status_display}
-                    </span>
+                  <div className="p-8 flex-grow flex flex-col">
+                    <h2 className="text-2xl font-bold text-primary mb-3 leading-snug" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                      {program.title}
+                    </h2>
+                    <p className="text-on-surface-variant leading-relaxed mb-7 text-sm flex-1 line-clamp-3">
+                      {program.description}
+                    </p>
+                    <div className="mt-auto pt-5 border-t border-outline-variant/15 flex justify-between items-center">
+                      <span className={`text-xs font-bold uppercase ${statusColor[program.status] || ""}`}>
+                        {program.status_display}
+                      </span>
+                      <span className="flex items-center gap-1 text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+                        Selengkapnya →
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-5">
-                  <h2 className="font-bold text-gray-900 mb-2 group-hover:text-[#2D5016] transition-colors">{program.title}</h2>
-                  <p className="text-sm text-gray-500 line-clamp-3 mb-4">{program.description}</p>
-                  <span className="text-sm font-semibold text-[#2D5016]">Lihat Detail →</span>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
 
           {programs.length === 0 && (
-            <div className="text-center py-20 text-gray-400">
-              <p className="text-lg">Belum ada program dalam kategori ini</p>
+            <div className="text-center py-20 text-on-surface-variant">
+              <span className="material-symbols-outlined text-5xl mb-4 block">folder_open</span>
+              <p>Belum ada program dalam kategori ini</p>
             </div>
           )}
         </div>

@@ -5,104 +5,104 @@ import Image from "next/image";
 import Link from "next/link";
 import { Program } from "@/lib/api";
 
+interface Props {
+  programs: Program[];
+}
+
 const TABS = [
   { id: "all", label: "Semua" },
-  { id: "sosial", label: "Sosial & Keagamaan" },
-  { id: "kesehatan", label: "Kesehatan & Lingkungan" },
-  { id: "pendidikan", label: "Pendidikan & Pembinaan" },
-  { id: "ekonomi", label: "Ekonomi & Pemberdayaan" },
+  { id: "sosial", label: "Sosial & Keagamaan", cats: ["sosial", "keagamaan"] },
+  { id: "kesehatan", label: "Kesehatan & Lingkungan", cats: ["kesehatan", "lingkungan"] },
+  { id: "pendidikan", label: "Pendidikan & Pembinaan", cats: ["pendidikan"] },
+  { id: "ekonomi", label: "Ekonomi & Pemberdayaan", cats: ["ekonomi"] },
 ];
 
-const statusColors: Record<string, string> = {
-  aktif: "bg-green-100 text-green-700",
-  selesai: "bg-gray-100 text-gray-600",
-  terencana: "bg-blue-100 text-blue-700",
-};
-
-const categoryMap: Record<string, string[]> = {
-  "sosial": ["sosial", "keagamaan"],
-  "kesehatan": ["kesehatan", "lingkungan"],
-  "pendidikan": ["pendidikan"],
-  "ekonomi": ["ekonomi"],
+const statusBadge: Record<string, string> = {
+  aktif: "text-green-700",
+  selesai: "text-on-surface-variant",
+  terencana: "text-blue-600",
 };
 
 export default function ProgramTabs({ programs }: { programs: Program[] }) {
-  const [activeTab, setActiveTab] = useState("all");
+  const [active, setActive] = useState("all");
 
   const filtered = programs.filter((p) => {
-    if (activeTab === "all") return true;
-    const cats = categoryMap[activeTab] || [activeTab];
-    return cats.includes(p.category);
+    if (active === "all") return true;
+    const tab = TABS.find((t) => t.id === active);
+    return tab?.cats?.includes(p.category);
   });
 
   return (
     <div>
-      {/* Tab buttons */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-10">
         {TABS.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === tab.id
-                ? "bg-[#2D5016] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            onClick={() => setActive(tab.id)}
+            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+              active === tab.id
+                ? "bg-primary text-on-primary shadow-md"
+                : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
             }`}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             {tab.label}
           </button>
         ))}
       </div>
 
-      {/* Program grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((program) => (
           <Link
             key={program.id}
             href={`/program/${program.slug}`}
-            className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-gray-100"
+            className="group bg-surface-container-lowest rounded-[1.5rem] overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col"
           >
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-56 overflow-hidden">
               {program.image ? (
                 <Image
                   src={program.image}
                   alt={program.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   unoptimized
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-green-100 to-green-200" />
+                <div className="w-full h-full bg-gradient-to-br from-primary-fixed to-primary-fixed-dim" />
               )}
-              <div className="absolute top-3 left-3 flex gap-2">
-                <span className="text-xs bg-white/90 text-[#2D5016] font-semibold px-2 py-1 rounded-full">
-                  {program.category_display}
-                </span>
-              </div>
-              <div className="absolute top-3 right-3">
-                <span className={`text-xs font-semibold px-2 py-1 rounded-full ${statusColors[program.status] || "bg-gray-100"}`}>
-                  {program.status_display}
-                </span>
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-primary text-[10px] font-black uppercase px-3 py-1.5 rounded-full">
+                {program.category_display}
               </div>
             </div>
-            <div className="p-5">
-              <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#2D5016] transition-colors line-clamp-2">
+            <div className="p-7 flex-grow flex flex-col">
+              <h3
+                className="text-xl font-bold text-primary mb-3 leading-snug"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
                 {program.title}
               </h3>
-              <p className="text-sm text-gray-500 line-clamp-2 mb-3">
+              <p className="text-on-surface-variant leading-relaxed mb-6 text-sm flex-1 line-clamp-3">
                 {program.description}
               </p>
-              <span className="text-sm font-semibold text-[#2D5016]">
-                Lihat Program →
-              </span>
+              <div className="mt-auto pt-5 border-t border-outline-variant/20 flex justify-between items-center">
+                <span className={`text-xs font-bold uppercase ${statusBadge[program.status] || ""}`}>
+                  {program.status_display}
+                </span>
+                <span className="flex items-center gap-1 text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+                  Selengkapnya →
+                </span>
+              </div>
             </div>
           </Link>
         ))}
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 text-gray-400">
-          <p>Belum ada program dalam kategori ini</p>
+        <div className="text-center py-16 text-on-surface-variant">
+          <span className="material-symbols-outlined text-4xl mb-3 block">folder_open</span>
+          <p>Belum ada program untuk kategori ini.</p>
         </div>
       )}
     </div>

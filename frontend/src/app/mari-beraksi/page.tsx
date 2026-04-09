@@ -1,20 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { submitVolunteer, submitPartnership, submitContact } from "@/lib/api";
-import { Copy, CheckCircle, MessageCircle, Users, Building2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { submitVolunteer, submitPartnership } from "@/lib/api";
+import { Copy, CheckCircle } from "lucide-react";
 
+/* ── TAB IDs ── */
 const TABS = [
-  { id: "donasi", label: "Donasi", icon: <MessageCircle size={18} /> },
-  { id: "relawan", label: "Jadi Relawan", icon: <Users size={18} /> },
-  { id: "kemitraan", label: "Kemitraan", icon: <Building2 size={18} /> },
+  { id: "donasi",    label: "Donasi",        icon: "volunteer_activism" },
+  { id: "relawan",   label: "Sukarelawan",   icon: "groups" },
+  { id: "kemitraan", label: "Kemitraan",     icon: "handshake" },
 ];
 
+/* ═══════════════════════════════════════ DONASI ═══ */
 function DonasiTab() {
   const [copied, setCopied] = useState(false);
-  const noRek = "0407 0100 0420 565";
+  const noRek = "04070100042056 5";
 
-  const handleCopy = () => {
+  const copy = () => {
     navigator.clipboard.writeText(noRek.replace(/\s/g, ""));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -22,222 +26,220 @@ function DonasiTab() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <div className="bg-gradient-to-br from-[#2D5016] to-[#1e3710] rounded-2xl p-8 text-white text-center shadow-2xl">
-        <p className="text-green-200 text-sm mb-2">Transfer ke rekening</p>
-        <div className="text-4xl font-bold mb-1">{noRek}</div>
-        <p className="text-green-200 text-sm mb-2">Bank BRI</p>
-        <p className="text-lg font-semibold">a.n. Yayasan Amanah Peduli Umat</p>
+      {/* Rekening card */}
+      <div className="bg-primary rounded-[2rem] p-10 text-center shadow-2xl">
+        <span className="material-symbols-outlined text-4xl text-secondary-container mb-4 block" style={{ fontVariationSettings: "'FILL' 1" }}>
+          account_balance
+        </span>
+        <p className="text-on-primary/60 text-sm mb-2">Transfer ke rekening</p>
+        <div className="text-3xl font-black text-on-primary mb-1 tracking-widest" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+          {noRek}
+        </div>
+        <p className="text-on-primary/60 text-sm mb-1">Bank BRI</p>
+        <p className="text-on-primary font-bold mb-7">a.n. Yayasan Amanah Peduli Umat</p>
         <button
-          onClick={handleCopy}
-          className={`mt-5 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            copied ? "bg-green-400 text-white" : "bg-white text-[#2D5016] hover:bg-[#E8A020] hover:text-white"
+          onClick={copy}
+          className={`inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold transition-all ${
+            copied
+              ? "bg-green-400 text-white"
+              : "bg-secondary-container text-on-secondary-container hover:scale-105"
           }`}
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
-          {copied ? <><CheckCircle size={16} /> Tersalin!</> : <><Copy size={16} /> Salin Nomor Rekening</>}
+          {copied
+            ? <><CheckCircle size={16} /> Tersalin!</>
+            : <><Copy size={16} /> Salin Nomor Rekening</>
+          }
         </button>
       </div>
 
-      <div className="bg-[#F5F5F5] rounded-2xl p-6 border border-gray-200 text-center">
-        <p className="text-sm text-gray-500 mb-2">Atau scan QRIS di bawah ini</p>
-        <div className="w-48 h-48 bg-white border-2 border-dashed border-gray-300 rounded-xl mx-auto flex items-center justify-center text-gray-400 text-sm">
+      {/* QRIS placeholder */}
+      <div className="bg-surface-container-low rounded-2xl p-8 border border-outline-variant/20 text-center">
+        <p className="text-sm text-on-surface-variant mb-4 font-medium">Atau scan QRIS</p>
+        <div className="w-44 h-44 border-2 border-dashed border-outline-variant rounded-2xl mx-auto flex items-center justify-center text-on-surface-variant text-xs">
           QRIS Coming Soon
         </div>
       </div>
 
+      {/* Konfirmasi WA */}
       <a
         href="https://wa.me/6282126979782?text=Assalamualaikum%2C%20saya%20telah%20melakukan%20donasi%20ke%20YAPU.%20Mohon%20konfirmasinya."
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-3 w-full bg-[#25D366] text-white font-semibold py-4 rounded-2xl hover:bg-[#1ebe5d] transition-all shadow-lg hover:-translate-y-0.5"
+        className="flex items-center justify-center gap-3 w-full py-4 rounded-full font-bold text-sm text-white hover:scale-105 transition-transform shadow-lg"
+        style={{ background: "#25D366", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
       >
-        <MessageCircle size={20} /> Konfirmasi Donasi via WhatsApp
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-5 h-5" fill="white">
+          <path d="M24 4C13 4 4 13 4 24c0 3.7 1 7.2 2.8 10.2L4 44l10.1-2.7C17.1 43.1 20.5 44 24 44c11 0 20-9 20-20S35 4 24 4zm8.8 28.1c-.5-.2-2.8-1.4-3.2-1.5-.4-.2-.7-.2-1 .2-.3.5-1.2 1.5-1.5 1.8-.3.3-.5.4-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.4-2.8-2.6-3.2-.3-.5 0-.8.2-1 .2-.2.5-.5.7-.8.2-.3.3-.5.4-.8.1-.3 0-.6-.1-.8-.1-.2-1-2.5-1.4-3.4-.4-.9-.8-.8-1-.8h-.9c-.3 0-.8.1-1.2.6-.4.5-1.6 1.5-1.6 3.7s1.6 4.3 1.8 4.6c.2.3 3.2 4.9 7.7 6.8 1.1.5 1.9.8 2.6 1 1.1.3 2 .3 2.8.2.8-.1 2.6-1.1 3-2.1.4-1 .4-1.9.3-2.1-.2-.1-.5-.2-1-.4z" />
+        </svg>
+        Konfirmasi Donasi via WhatsApp
       </a>
 
-      <p className="text-center text-xs text-gray-400">
+      <p className="text-center text-xs text-on-surface-variant">
         Seluruh donasi dikelola secara amanah dan transparan. Laporan penggunaan dana dapat diakses di halaman Kabar Terbaru.
       </p>
     </div>
   );
 }
 
+/* ═══════════════════════════════════════ RELAWAN ═══ */
 function RelawanTab() {
-  const [form, setForm] = useState({ full_name: "", email: "", phone: "", interest: "", domicile: "", message: "" });
+  const [form, setForm] = useState({ full_name:"", email:"", phone:"", interest:"", domicile:"", message:"" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      await submitVolunteer(form);
-      setSuccess(true);
-      setForm({ full_name: "", email: "", phone: "", interest: "", domicile: "", message: "" });
-    } catch {
-      setError("Terjadi kesalahan. Silakan coba lagi.");
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true); setError("");
+    try { await submitVolunteer(form); setSuccess(true); setForm({ full_name:"", email:"", phone:"", interest:"", domicile:"", message:"" }); }
+    catch { setError("Terjadi kesalahan. Silakan coba lagi."); }
+    finally { setLoading(false); }
   };
 
-  if (success) {
-    return (
-      <div className="max-w-xl mx-auto text-center py-16">
-        <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle size={40} className="text-[#2D5016]" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">Pendaftaran Berhasil!</h3>
-        <p className="text-gray-500 mb-6">Terima kasih telah mendaftar sebagai relawan YAPU. Tim kami akan menghubungi Anda segera.</p>
-        <button onClick={() => setSuccess(false)} className="bg-[#2D5016] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#1e3710] transition-all">
-          Daftar Lagi
-        </button>
+  if (success) return (
+    <div className="max-w-lg mx-auto text-center py-16">
+      <div className="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center mx-auto mb-5">
+        <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
       </div>
-    );
-  }
+      <h3 className="text-2xl font-extrabold text-primary mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pendaftaran Berhasil!</h3>
+      <p className="text-on-surface-variant mb-6 text-sm">Tim YAPU akan menghubungi Anda segera melalui WhatsApp atau email.</p>
+      <button onClick={() => setSuccess(false)} className="bg-primary text-on-primary px-7 py-3 rounded-full font-bold text-sm hover:bg-primary-container transition-all" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+        Daftar Lagi
+      </button>
+    </div>
+  );
+
+  const inputClass = "w-full border border-outline-variant/40 bg-surface-container-lowest rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap *</label>
-          <input required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="Nama lengkap Anda" />
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Nama Lengkap *</label>
+          <input required value={form.full_name} onChange={(e) => set("full_name", e.target.value)} className={inputClass} placeholder="Nama lengkap Anda" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-          <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="email@contoh.com" />
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Email *</label>
+          <input required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className={inputClass} placeholder="email@contoh.com" />
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">No. HP / WhatsApp *</label>
-          <input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="08xxxxxxxxxx" />
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>No. WhatsApp *</label>
+          <input required value={form.phone} onChange={(e) => set("phone", e.target.value)} className={inputClass} placeholder="08xxxxxxxxxx" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Domisili *</label>
-          <input required value={form.domicile} onChange={(e) => setForm({ ...form, domicile: e.target.value })}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="Kota Anda" />
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Domisili *</label>
+          <input required value={form.domicile} onChange={(e) => set("domicile", e.target.value)} className={inputClass} placeholder="Kota Anda" />
         </div>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Bidang Minat *</label>
-        <select required value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent bg-white">
+        <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Bidang Minat *</label>
+        <select required value={form.interest} onChange={(e) => set("interest", e.target.value)} className={inputClass} style={{ backgroundImage: "none" }}>
           <option value="">Pilih bidang minat</option>
-          <option value="kesehatan">Kesehatan</option>
-          <option value="pendidikan">Pendidikan</option>
-          <option value="lingkungan">Lingkungan</option>
-          <option value="sosial">Sosial & Kemanusiaan</option>
-          <option value="teknologi">Teknologi & Dokumentasi</option>
-          <option value="logistik">Logistik & Operasional</option>
-          <option value="lainnya">Lainnya</option>
+          {["kesehatan","pendidikan","lingkungan","sosial","teknologi","logistik","lainnya"].map((v) => (
+            <option key={v} value={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</option>
+          ))}
         </select>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Pesan / Motivasi</label>
-        <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={4}
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent resize-none" placeholder="Ceritakan motivasi Anda bergabung sebagai relawan YAPU..." />
+        <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Motivasi</label>
+        <textarea value={form.message} onChange={(e) => set("message", e.target.value)} rows={4}
+          className={inputClass + " resize-none"} placeholder="Ceritakan motivasi Anda bergabung sebagai relawan YAPU..." />
       </div>
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <p className="text-error text-sm">{error}</p>}
       <button type="submit" disabled={loading}
-        className="w-full bg-[#2D5016] text-white font-semibold py-4 rounded-xl hover:bg-[#1e3710] transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+        className="w-full bg-primary text-on-primary font-bold py-4 rounded-full hover:bg-primary-container transition-all disabled:opacity-60 text-sm"
+        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         {loading ? "Mengirim..." : "Daftar Menjadi Relawan"}
       </button>
     </form>
   );
 }
 
+/* ═══════════════════════════════════════ KEMITRAAN ═══ */
 function KemitraanTab() {
-  const [form, setForm] = useState({ institution_name: "", pic_name: "", email: "", phone: "", partnership_type: "", message: "" });
+  const [form, setForm] = useState({ institution_name:"", pic_name:"", email:"", phone:"", partnership_type:"", message:"" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      await submitPartnership(form);
-      setSuccess(true);
-      setForm({ institution_name: "", pic_name: "", email: "", phone: "", partnership_type: "", message: "" });
-    } catch {
-      setError("Terjadi kesalahan. Silakan coba lagi.");
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true); setError("");
+    try { await submitPartnership(form); setSuccess(true); setForm({ institution_name:"", pic_name:"", email:"", phone:"", partnership_type:"", message:"" }); }
+    catch { setError("Terjadi kesalahan. Silakan coba lagi."); }
+    finally { setLoading(false); }
   };
 
-  if (success) {
-    return (
-      <div className="max-w-xl mx-auto text-center py-16">
-        <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle size={40} className="text-[#2D5016]" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">Pengajuan Terkirim!</h3>
-        <p className="text-gray-500 mb-6">Tim YAPU akan segera meninjau pengajuan kemitraan dari Lembaga Anda.</p>
-        <button onClick={() => setSuccess(false)} className="bg-[#2D5016] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#1e3710] transition-all">
-          Ajukan Lagi
-        </button>
+  const inputClass = "w-full border border-outline-variant/40 bg-surface-container-lowest rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all";
+
+  if (success) return (
+    <div className="max-w-lg mx-auto text-center py-16">
+      <div className="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center mx-auto mb-5">
+        <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
       </div>
-    );
-  }
+      <h3 className="text-2xl font-extrabold text-primary mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pengajuan Terkirim!</h3>
+      <p className="text-on-surface-variant mb-6 text-sm">Tim YAPU akan segera menghubungi Anda untuk mendiskusikan peluang kemitraan.</p>
+      <button onClick={() => setSuccess(false)} className="bg-primary text-on-primary px-7 py-3 rounded-full font-bold text-sm hover:bg-primary-container transition-all" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Ajukan Lagi</button>
+    </div>
+  );
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-[#F5F5F5] rounded-2xl p-5 mb-6 text-sm text-gray-600 border border-gray-200">
-        <p className="font-medium text-gray-800 mb-1">Kontak Langsung:</p>
-        <p>Email: <a href="mailto:sekretariatyapu@gmail.com" className="text-[#2D5016] font-medium">sekretariatyapu@gmail.com</a></p>
-        <p>Telepon: <a href="tel:082240672888" className="text-[#2D5016] font-medium">082240672888</a> (Rinaldi)</p>
+      {/* Kontak langsung */}
+      <div className="bg-primary rounded-2xl p-6 mb-6 text-on-primary">
+        <p className="font-bold text-sm mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Kontak Tim YAPU Langsung</p>
+        <div className="space-y-2 text-sm text-on-primary/80">
+          <p>Email: <a href="mailto:sekretariatyapu@gmail.com" className="text-secondary-container font-medium hover:underline">sekretariatyapu@gmail.com</a></p>
+          <p>Telepon: <a href="tel:082240672888" className="text-secondary-container font-medium hover:underline">082240672888</a> (Rinaldi)</p>
+        </div>
       </div>
+
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nama Lembaga *</label>
-            <input required value={form.institution_name} onChange={(e) => setForm({ ...form, institution_name: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="Nama lembaga / organisasi" />
+            <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Nama Lembaga *</label>
+            <input required value={form.institution_name} onChange={(e) => set("institution_name", e.target.value)} className={inputClass} placeholder="Nama lembaga / organisasi" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nama PIC *</label>
-            <input required value={form.pic_name} onChange={(e) => setForm({ ...form, pic_name: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="Nama penanggung jawab" />
+            <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Nama PIC *</label>
+            <input required value={form.pic_name} onChange={(e) => set("pic_name", e.target.value)} className={inputClass} placeholder="Nama penanggung jawab" />
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-            <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="email@lembaga.com" />
+            <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Email *</label>
+            <input required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className={inputClass} placeholder="email@lembaga.com" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Telepon *</label>
-            <input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent" placeholder="08xxxxxxxxxx" />
+            <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Telepon *</label>
+            <input required value={form.phone} onChange={(e) => set("phone", e.target.value)} className={inputClass} placeholder="08xxxxxxxxxx" />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Jenis Kemitraan *</label>
-          <select required value={form.partnership_type} onChange={(e) => setForm({ ...form, partnership_type: e.target.value })}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent bg-white">
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Jenis Kemitraan *</label>
+          <select required value={form.partnership_type} onChange={(e) => set("partnership_type", e.target.value)} className={inputClass} style={{ backgroundImage: "none" }}>
             <option value="">Pilih jenis kemitraan</option>
-            <option value="donasi">Donasi / Sponsorship</option>
-            <option value="program">Kolaborasi Program</option>
-            <option value="logistik">Bantuan Logistik</option>
-            <option value="media">Media & Publikasi</option>
-            <option value="lainnya">Lainnya</option>
+            {[["donasi","Donasi / Sponsorship"],["program","Kolaborasi Program"],["logistik","Bantuan Logistik"],["media","Media & Publikasi"],["lainnya","Lainnya"]].map(([v,l]) => (
+              <option key={v} value={v}>{l}</option>
+            ))}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Pesan *</label>
-          <textarea required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={4}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2D5016] focus:border-transparent resize-none" placeholder="Jelaskan bentuk kemitraan yang ingin Anda ajukan..." />
+          <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pesan *</label>
+          <textarea required value={form.message} onChange={(e) => set("message", e.target.value)} rows={4}
+            className={inputClass + " resize-none"} placeholder="Jelaskan bentuk kemitraan yang ingin Anda ajukan..." />
         </div>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-error text-sm">{error}</p>}
         <button type="submit" disabled={loading}
-          className="w-full bg-[#2D5016] text-white font-semibold py-4 rounded-xl hover:bg-[#1e3710] transition-all disabled:opacity-60">
+          className="w-full bg-primary text-on-primary font-bold py-4 rounded-full hover:bg-primary-container transition-all disabled:opacity-60 text-sm"
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
           {loading ? "Mengirim..." : "Ajukan Kemitraan"}
         </button>
       </form>
@@ -245,44 +247,77 @@ function KemitraanTab() {
   );
 }
 
+/* ═══════════════════════════════════════ MAIN PAGE ═══ */
 export default function MariBeraksiPage() {
   const [activeTab, setActiveTab] = useState("donasi");
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-28 pb-16 px-4 bg-gradient-to-br from-[#2D5016] to-[#1e3710]">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="text-[#E8A020] font-semibold text-sm uppercase tracking-wider">Bergabung Bersama Kami</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mt-3 mb-4">Mari Beraksi</h1>
-          <p className="text-green-200 max-w-xl mx-auto">Setiap langkah kebaikan Anda adalah amanah yang kami jaga dengan penuh tanggung jawab</p>
+      {/* ── HERO 2 KOLOM ── */}
+      <section className="relative pt-28 pb-20 bg-gradient-to-br from-primary to-primary-container overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05]">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-white translate-x-1/3 -translate-y-1/3" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <nav className="flex items-center gap-2 text-xs text-on-primary/50 mb-8" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <Link href="/" className="hover:text-on-primary transition-colors">Beranda</Link>
+                <span className="material-symbols-outlined text-sm">chevron_right</span>
+                <span className="text-on-primary/80">Mari Beraksi</span>
+              </nav>
+              <div className="flex items-center gap-3 text-secondary-container font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <span className="w-8 h-0.5 bg-secondary-container" />
+                Bergabung Bersama Kami
+              </div>
+              <h1 className="text-5xl font-extrabold text-on-primary leading-tight mb-5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                Mari Beraksi Bersama YAPU
+              </h1>
+              <p className="text-on-primary/70 leading-relaxed max-w-lg">
+                Setiap langkah kebaikan Anda adalah amanah yang kami jaga. Pilih cara terbaik untuk ikut berperan dalam perubahan nyata bagi masyarakat.
+              </p>
+            </div>
+            <div className="relative h-80 rounded-[2rem] overflow-hidden shadow-2xl">
+              <Image
+                src="https://res.cloudinary.com/drturcggf/image/upload/v1775537369/IMG_9872_rut6hk.jpg"
+                alt="Mari Beraksi bersama YAPU"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-[#F5F5F5]">
-        <div className="max-w-4xl mx-auto">
-          {/* Tab buttons */}
-          <div className="flex justify-center gap-3 mb-12">
+      {/* ── TAB SECTION ── */}
+      <section className="py-20 bg-surface-container-low">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Tab nav */}
+          <div className="flex justify-center gap-3 mb-14">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
                 id={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all ${
                   activeTab === tab.id
-                    ? "bg-[#2D5016] text-white shadow-lg"
-                    : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                    ? "bg-primary text-on-primary shadow-lg"
+                    : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border border-outline-variant/20"
                 }`}
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
-                {tab.icon}
+                <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: activeTab === tab.id ? "'FILL' 1" : "'FILL' 0" }}>
+                  {tab.icon}
+                </span>
                 {tab.label}
               </button>
             ))}
           </div>
 
-          {/* Tab Content */}
-          {activeTab === "donasi" && <DonasiTab />}
-          {activeTab === "relawan" && <RelawanTab />}
+          {/* Tab content */}
+          {activeTab === "donasi"    && <DonasiTab />}
+          {activeTab === "relawan"   && <RelawanTab />}
           {activeTab === "kemitraan" && <KemitraanTab />}
         </div>
       </section>
