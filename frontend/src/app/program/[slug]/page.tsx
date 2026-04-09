@@ -6,17 +6,6 @@ import { getProgramDetail, getGallery } from "@/lib/api";
 
 export const revalidate = 60;
 
-const PROGRAM_PHOTOS: Record<string, string> = {
-  "bakti-sosial-ramadan":     "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9657_ew9nrw.jpg",
-  "santunan-anak-yatim":      "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9741_bk8fq5.jpg",
-  "khitanan-massal":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
-  "operasi-katarak":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
-  "tanam-pohon":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_1634_px9rdk.jpg",
-  "pasar-murah":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9577_qfdynt.jpg",
-  "pengajian-umum":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9573_datase.jpg",
-  "program-qurban":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537365/IMG_1231_ml5syv.jpg",
-};
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   try {
@@ -38,7 +27,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
   catch { notFound(); }
 
   const gallery = await getGallery(slug).catch(() => []);
-  const heroImg = PROGRAM_PHOTOS[program.slug] || program.image;
+  const heroImg = program.image;
 
   return (
     <>

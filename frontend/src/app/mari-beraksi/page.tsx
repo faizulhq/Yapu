@@ -279,7 +279,7 @@ export default function MariBeraksiPage() {
             </div>
             <div className="relative h-80 rounded-[2rem] overflow-hidden shadow-2xl">
               <Image
-                src="https://res.cloudinary.com/drturcggf/image/upload/v1775537369/IMG_9872_rut6hk.jpg"
+                src="https://res.cloudinary.com/drturcggf/image/upload/v1775752137/mari-beraksi-1_rnftdy.jpg"
                 alt="Mari Beraksi bersama YAPU"
                 fill
                 className="object-cover"

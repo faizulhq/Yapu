@@ -28,7 +28,7 @@ export default function Footer() {
             alt="YAPU"
             width={130}
             height={44}
-            className="h-11 w-auto object-contain brightness-0 invert"
+            className="h-11 w-auto object-contain"
             style={{ width: "auto" }}
             unoptimized
           />

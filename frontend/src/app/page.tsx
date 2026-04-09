@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
@@ -19,12 +18,12 @@ export const revalidate = 60;
 
 /* ─── fallback stats ─── */
 const FALLBACK_STATS = [
-  { id:1, label:"Lokasi Jangkauan",         value:"27",     icon:"🗺️", order:1 },
-  { id:2, label:"Penerima Manfaat Dhuafa",  value:"1.000+", icon:"👥", order:2 },
-  { id:3, label:"Anak Yatim Disantuni",     value:"1.000+", icon:"🧒", order:3 },
-  { id:4, label:"Peserta Khitan",           value:"300+",   icon:"✂️", order:4 },
-  { id:5, label:"Hewan Qurban",             value:"170+",   icon:"🐄", order:5 },
-  { id:6, label:"Peserta Katarak",          value:"60+",    icon:"👁️", order:6 },
+  { id: 1, label: "Lokasi Jangkauan", value: "27", icon: "🗺️", order: 1 },
+  { id: 2, label: "Penerima Manfaat Dhuafa", value: "1.000+", icon: "👥", order: 2 },
+  { id: 3, label: "Anak Yatim Disantuni", value: "1.000+", icon: "🧒", order: 3 },
+  { id: 4, label: "Peserta Khitan", value: "300+", icon: "✂️", order: 4 },
+  { id: 5, label: "Hewan Qurban", value: "170+", icon: "🐄", order: 5 },
+  { id: 6, label: "Peserta Katarak", value: "60+", icon: "👁️", order: 6 },
 ];
 
 /* ─── fokus kerja tabs content ─── */
@@ -67,11 +66,11 @@ export default async function HomePage() {
     getPartners(),
   ]);
 
-  const programList  = programs.status  === "fulfilled" ? programs.value  : [];
-  const articleList  = articles.status  === "fulfilled" ? articles.value  : [];
-  const statList     = stats.status     === "fulfilled" && stats.value.length ? stats.value : FALLBACK_STATS;
+  const programList = programs.status === "fulfilled" ? programs.value : [];
+  const articleList = articles.status === "fulfilled" ? articles.value : [];
+  const statList = stats.status === "fulfilled" && stats.value.length ? stats.value : FALLBACK_STATS;
   const locationList = locations.status === "fulfilled" ? locations.value : [];
-  const partnerList  = partners.status  === "fulfilled" ? partners.value  : [];
+  const partnerList = partners.status === "fulfilled" ? partners.value : [];
 
   return (
     <>
@@ -80,18 +79,8 @@ export default async function HomePage() {
       ══════════════════════════════════════════ */}
       <HeroVideo />
 
-
       {/* ══════════════════════════════════════════
-          2. IMPACT COUNTER — floating card
-      ══════════════════════════════════════════ */}
-      <section className="relative z-30 -mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="bg-surface-container-lowest rounded-[2rem] shadow-2xl overflow-hidden p-6 sm:p-8 border border-outline-variant/10">
-          <ImpactCounter stats={statList} />
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          3. TENTANG KAMI – 2 kolom
+          3. TENTANG KAMI — Premium Full Section
       ══════════════════════════════════════════ */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -153,22 +142,17 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          4. FOKUS KERJA — Tabbed
-      ══════════════════════════════════════════ */}
-      <FokusKerjaSection />
-
-      {/* ══════════════════════════════════════════
-          5. PROGRAM GRID
+          4. FOKUS KERJA — Direct Program Grid
       ══════════════════════════════════════════ */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
             <div className="flex items-center gap-3 text-secondary font-bold tracking-widest text-xs uppercase mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               <span className="w-8 h-0.5 bg-secondary" />
-              Program YAPU
+              Fokus Kerja
             </div>
             <h2 className="text-4xl font-extrabold text-primary leading-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              Semua Program Kami
+              Semua Program YAPU
             </h2>
           </div>
           <Link href="/program" className="text-primary font-bold text-sm hover:underline shrink-0" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -179,26 +163,32 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          6. PETA JANGKAUAN
+          6. WILAYAH DAMPAK + PENCAPAIAN (combined)
       ══════════════════════════════════════════ */}
-      <section className="py-24 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-3 text-secondary font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            <span className="w-8 h-0.5 bg-secondary" />
-            Wilayah Dampak
-            <span className="w-8 h-0.5 bg-secondary" />
+      <section className="bg-[#0f2a00] text-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 text-secondary-container/70 font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              <span className="w-8 h-0.5 bg-secondary-container/50" />
+              Jangkauan & Dampak
+              <span className="w-8 h-0.5 bg-secondary-container/50" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              Wilayah &amp; Pencapaian YAPU
+            </h2>
+            <p className="text-white/60 max-w-xl mx-auto text-sm">
+              Dari Bandung hingga seluruh penjuru Jawa Barat — setiap titik mewakili amanah yang kami emban.
+            </p>
           </div>
-          <h2 className="text-4xl font-extrabold text-primary mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            Jangkauan Kami
-          </h2>
-          <p className="text-on-surface-variant max-w-xl mx-auto mb-10 text-sm">
-            Klik marker pada peta untuk melihat detail penerima manfaat di setiap wilayah
-          </p>
-          <div className="h-[440px] sm:h-[520px] rounded-[2rem] overflow-hidden shadow-xl border border-outline-variant/20">
+
+          {/* Peta */}
+          <div className="h-[400px] sm:h-[480px] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 mb-6">
             {locationList.length > 0 ? (
               <MapVisualization locations={locationList} />
             ) : (
-              <div className="w-full h-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+              <div className="w-full h-full bg-white/5 flex items-center justify-center text-white/40">
                 Memuat peta...
               </div>
             )}
@@ -206,14 +196,24 @@ export default async function HomePage() {
 
           {/* Location chips */}
           {locationList.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-2 justify-center mb-14">
               {locationList.map((loc) => (
-                <span key={loc.id} className="text-xs bg-primary text-on-primary px-4 py-2 rounded-full font-medium">
-                  {loc.name} · <strong>{loc.beneficiaries_count}+</strong> penerima
+                <span key={loc.id} className="text-xs bg-white/10 text-white/80 border border-white/15 px-4 py-2 rounded-full font-medium hover:bg-white/20 transition-all">
+                  {loc.name} · <strong className="text-secondary-container">{loc.beneficiaries_count}+</strong> penerima
                 </span>
               ))}
             </div>
           )}
+
+          {/* Divider */}
+          <div className="flex items-center gap-4 mb-14">
+            <span className="flex-1 h-px bg-white/10" />
+            <span className="text-white/40 text-xs uppercase tracking-widest font-bold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pencapaian Kami</span>
+            <span className="flex-1 h-px bg-white/10" />
+          </div>
+
+          {/* Stats grid */}
+          <ImpactCounter stats={statList} dark />
         </div>
       </section>
 
@@ -316,6 +316,3 @@ export default async function HomePage() {
     </>
   );
 }
-
-/* ─── FOKUS KERJA CLIENT COMPONENT ─── */
-import FokusKerjaSection from "@/components/FokusKerjaSection";

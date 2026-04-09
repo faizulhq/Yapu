@@ -9,52 +9,18 @@ interface Props {
   programs: Program[];
 }
 
-const TABS = [
-  { id: "all", label: "Semua" },
-  { id: "sosial", label: "Sosial & Keagamaan", cats: ["sosial", "keagamaan"] },
-  { id: "kesehatan", label: "Kesehatan & Lingkungan", cats: ["kesehatan", "lingkungan"] },
-  { id: "pendidikan", label: "Pendidikan & Pembinaan", cats: ["pendidikan"] },
-  { id: "ekonomi", label: "Ekonomi & Pemberdayaan", cats: ["ekonomi"] },
-];
-
 const statusBadge: Record<string, string> = {
   aktif: "text-green-700",
   selesai: "text-on-surface-variant",
   terencana: "text-blue-600",
 };
 
-export default function ProgramTabs({ programs }: { programs: Program[] }) {
-  const [active, setActive] = useState("all");
-
-  const filtered = programs.filter((p) => {
-    if (active === "all") return true;
-    const tab = TABS.find((t) => t.id === active);
-    return tab?.cats?.includes(p.category);
-  });
-
+export default function ProgramTabs({ programs }: Props) {
   return (
     <div>
-      {/* Tabs */}
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActive(tab.id)}
-            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
-              active === tab.id
-                ? "bg-primary text-on-primary shadow-md"
-                : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
-            }`}
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid */}
+      {/* Grid langsung — tanpa filter tab */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.map((program) => (
+        {programs.map((program) => (
           <Link
             key={program.id}
             href={`/program/${program.slug}`}
@@ -99,10 +65,10 @@ export default function ProgramTabs({ programs }: { programs: Program[] }) {
         ))}
       </div>
 
-      {filtered.length === 0 && (
+      {programs.length === 0 && (
         <div className="text-center py-16 text-on-surface-variant">
           <span className="material-symbols-outlined text-4xl mb-3 block">folder_open</span>
-          <p>Belum ada program untuk kategori ini.</p>
+          <p>Belum ada program YAPU.</p>
         </div>
       )}
     </div>

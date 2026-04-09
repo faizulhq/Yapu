@@ -25,13 +25,14 @@ class Program(models.Model):
     content = RichTextUploadingField(verbose_name='Konten Detail', blank=True)
     image = models.URLField(verbose_name='URL Foto (Cloudinary)', blank=True)
     is_featured = models.BooleanField(default=False, verbose_name='Tampilkan di Beranda')
+    display_order = models.PositiveIntegerField(default=0, verbose_name='Urutan Tampil')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Program'
         verbose_name_plural = 'Program'
-        ordering = ['-created_at']
+        ordering = ['display_order', 'created_at']
 
     def __str__(self):
         return self.title

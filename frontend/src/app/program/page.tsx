@@ -9,17 +9,7 @@ export const metadata: Metadata = {
 };
 export const revalidate = 60;
 
-/* Cloudinary photos per program slug */
-const PROGRAM_PHOTOS: Record<string, string> = {
-  "bakti-sosial-ramadan":     "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9657_ew9nrw.jpg",
-  "santunan-anak-yatim":      "https://res.cloudinary.com/drturcggf/image/upload/v1775537341/IMG_9741_bk8fq5.jpg",
-  "khitanan-massal":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
-  "operasi-katarak":          "https://res.cloudinary.com/drturcggf/image/upload/v1775537337/IMG_5076_iwnnwg.jpg",
-  "tanam-pohon":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_1634_px9rdk.jpg",
-  "pasar-murah":              "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9577_qfdynt.jpg",
-  "pengajian-umum":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537340/IMG_9573_datase.jpg",
-  "program-qurban":           "https://res.cloudinary.com/drturcggf/image/upload/v1775537365/IMG_1231_ml5syv.jpg",
-};
+/* No static dictionary needed; dynamic images directly from Django backend will be used */
 
 const CATEGORY_TABS = [
   { id: "all",        label: "Semua" },
@@ -121,7 +111,7 @@ export default async function ProgramPage({
           {/* Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {programs.map((program) => {
-              const photo = PROGRAM_PHOTOS[program.slug] || program.image;
+              const photo = program.image;
               return (
                 <Link
                   key={program.id}

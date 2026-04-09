@@ -30,7 +30,7 @@ function useCountUp(target: number, duration: number, started: boolean) {
   return count;
 }
 
-function StatItem({ stat, index }: { stat: ImpactStat; index: number }) {
+function StatItem({ stat, index, dark }: { stat: ImpactStat; index: number; dark?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const numericTarget = parseInt(stat.value.replace(/\D/g, ""), 10) || 0;
@@ -49,31 +49,37 @@ function StatItem({ stat, index }: { stat: ImpactStat; index: number }) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center text-center p-5 hover:bg-surface-container-low rounded-2xl transition-all duration-300 group cursor-default"
+      className={`flex flex-col items-center text-center p-5 rounded-2xl transition-all duration-300 group cursor-default ${
+        dark ? "hover:bg-white/10" : "hover:bg-surface-container-low"
+      }`}
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <span
-        className="material-symbols-outlined text-secondary mb-3 text-4xl group-hover:scale-110 transition-transform"
+        className={`material-symbols-outlined mb-3 text-4xl group-hover:scale-110 transition-transform ${
+          dark ? "text-secondary-container" : "text-secondary"
+        }`}
         style={{ fontVariationSettings: "'FILL' 1" }}
       >
         {icon}
       </span>
       <div
-        className="text-3xl font-black text-primary mb-1 tabular-nums"
+        className={`text-3xl font-black mb-1 tabular-nums ${dark ? "text-white" : "text-primary"}`}
         style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
       >
         {displayVal}{suffix}
       </div>
-      <div className="text-on-surface-variant font-medium text-xs leading-tight">{stat.label}</div>
+      <div className={`font-medium text-xs leading-tight ${dark ? "text-white/70" : "text-on-surface-variant"}`}>
+        {stat.label}
+      </div>
     </div>
   );
 }
 
-export default function ImpactCounter({ stats }: { stats: ImpactStat[] }) {
+export default function ImpactCounter({ stats, dark }: { stats: ImpactStat[]; dark?: boolean }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
       {stats.map((stat, i) => (
-        <StatItem key={stat.id} stat={stat} index={i} />
+        <StatItem key={stat.id} stat={stat} index={i} dark={dark} />
       ))}
     </div>
   );

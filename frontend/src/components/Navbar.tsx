@@ -28,14 +28,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navBg =
-    isHome && !isScrolled && !menuOpen
-      ? "bg-transparent"
-      : "bg-white shadow-md";
-  const textColor =
-    isHome && !isScrolled && !menuOpen ? "text-white" : "text-gray-800";
-  const logoFilter =
-    isHome && !isScrolled && !menuOpen ? "brightness-0 invert" : "";
+  const navBg = "bg-white shadow-sm border-b border-gray-100";
+  const textColor = "text-gray-800";
+  const logoFilter = "";
 
   return (
     <header
