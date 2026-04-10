@@ -113,7 +113,14 @@ export default function Footer() {
             </li>
             <li className="flex gap-3 text-sm text-white/60">
               <Phone size={15} className="shrink-0 mt-0.5 text-secondary-container" />
-              <span>082240672888 (Rinaldi)</span>
+              <a 
+                href="https://wa.me/6282240672888?text=Assalamualaikum%2C%20saya%20mengetahui%20nomor%20ini%20dari%20website%20YAPU." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-secondary-container transition-colors"
+              >
+                082240672888 (Rinaldi Azka)
+              </a>
             </li>
           </ul>
         </div>

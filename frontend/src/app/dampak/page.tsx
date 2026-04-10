@@ -20,15 +20,15 @@ const FALLBACK_STATS = [
 ];
 
 const timeline = [
-  { year:"2018", title:"YAPU Berdiri",          desc:"Pendirian Yayasan Amanah Peduli Umat berdasarkan Akta Notaris No. 5, 5 Februari 2018 di Kota Bandung." },
-  { year:"2019", title:"Program Perdana",        desc:"Pelaksanaan program sosial pertama: santunan anak yatim dan paket sembako di wilayah Bandung." },
-  { year:"2020", title:"Ekspansi Wilayah",       desc:"Menjangkau wilayah Bekasi dan Jakarta Timur. Pelaksanaan khitanan massal perdana untuk 50+ peserta." },
-  { year:"2021", title:"Program Kesehatan",      desc:"Operasi katarak gratis membuka akses kesehatan bagi lansia dhuafa di berbagai wilayah Jawa Barat." },
-  { year:"2022", title:"Gerakan Lingkungan",     desc:"Meluncurkan Gerakan Tanam 10.000 Pohon sebagai komitmen nyata terhadap pelestarian lingkungan hidup." },
-  { year:"2023", title:"Jangkauan Cilacap",      desc:"Program menjangkau Majenang, Cilacap dengan 300+ penerima manfaat dalam satu rangkaian kegiatan." },
-  { year:"2024", title:"Konsolidasi & Growth",   desc:"Penguatan sistem manajemen dan peningkatan kolaborasi dengan mitra strategis dari berbagai sektor." },
-  { year:"2025", title:"1.000+ Penerima Manfaat",desc:"Capaian historis: lebih dari 1.000 anak yatim dan 1.000 dhuafa telah merasakan manfaat program YAPU." },
-  { year:"2026", title:"Baksos Ramadan 1447H",   desc:"Bakti Sosial terbesar mencakup 6 wilayah sekaligus, menjangkau ratusan penerima manfaat dalam satu waktu." },
+  { year:"2018", title:"YAPU Berdiri", desc:"Pendirian Yayasan Amanah Peduli Umat berdasarkan Akta Notaris No. 5, 5 Februari 2018, disahkan Kemenkumham RI pada 19 Februari 2018 di Kota Bandung." },
+  { year:"2019", title:"Baksos Operasi Katarak Gratis", desc:"Pelaksanaan Bakti Sosial Operasi Katarak perdana bersama Klinik Mata Sa* di Pandeglang, 30 Maret 2019. Melayani puluhan peserta dari keluarga dhuafa yang mengalami gangguan penglihatan." },
+  { year:"2020", title:"Perluasan Program Sosial", desc:"YAPU memperluas jangkauan program sosial ke berbagai wilayah Jawa Barat, termasuk Bandung, Bekasi, dan Jakarta Timur melalui kegiatan santunan yatim dan pembagian sembako." },
+  { year:"2021", title:"Khitanan Massal & Santunan Yatim", desc:"Penyelenggaraan program khitanan massal gratis bagi anak-anak dari keluarga dhuafa, disertai santunan anak yatim di berbagai wilayah Jawa Barat." },
+  { year:"2022", title:"Program Qurban Nusantara", desc:"Penyaluran lebih dari 170 hewan qurban kepada masyarakat yang membutuhkan di berbagai wilayah, memperkuat program sosial-keagamaan YAPU secara nasional." },
+  { year:"2023", title:"Jangkauan 27 Lokasi", desc:"YAPU berhasil menjangkau 27 lokasi di berbagai kabupaten/kota, dengan lebih dari 1.000 anak yatim dan 1.000 dhuafa sebagai penerima manfaat kumulatif sejak berdiri." },
+  { year:"2024", title:"Tabligh Akbar & Pengajian Umum", desc:"Penyelenggaraan Tabligh Akbar bersama Yayasan Amanah Peduli Umat di Masjid Al-Ishlah, Kab. Bandung, dihadiri ratusan jamaah. Program dakwah dan pembinaan keimanan diperluas ke berbagai wilayah." },
+  { year:"2025", title:"Capaian 300+ Peserta Khitan & 60+ Katarak", desc:"Pencapaian kumulatif: lebih dari 300 peserta khitan massal dan 60 peserta operasi katarak gratis telah mendapatkan layanan kesehatan dari YAPU sejak berdiri." },
+  { year:"2026", title:"Bakti Sosial Marhaban Ya Ramadan 1447H", desc:"Bakti sosial terbesar YAPU: menjangkau 6 wilayah sekaligus (Cilacap, Bekasi, Jakarta Timur, Bandung, Garut, Cianjur). Meliputi penanaman 4.000 pohon, 68 peserta khitanan massal, 620+ paket sembako, 45 anak yatim disantuni, dan Gerakan Pasar Murah bersama Bank Mandiri & Badan Pangan Nasional." },
 ];
 
 export default async function DampakPage() {

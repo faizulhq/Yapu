@@ -20,7 +20,7 @@ export default function HeroVideo() {
           aria-hidden="true"
         >
           <source
-            src="https://res.cloudinary.com/drturcggf/video/upload/q_auto/f_auto/v1775538126/Auto-play_Video_qesy9j.mp4"
+            src="https://res.cloudinary.com/drturcggf/video/upload/v1775538126/Auto-play_Video_qesy9j.mp4"
             type="video/mp4"
           />
         </video>
@@ -75,7 +75,7 @@ export default function HeroVideo() {
               </div>
               
               <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-4 flex items-center gap-4 hover:bg-surface-container-low hover:border-secondary/30 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default">
-                <span className="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>analytics</span>
+                <span className="material-symbols-outlined text-secondary text-2xl group-hover:scale-110 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>diversity_3</span>
                 <span className="text-sm font-bold text-primary flex-1 leading-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pemberdayaan Umat</span>
               </div>
               

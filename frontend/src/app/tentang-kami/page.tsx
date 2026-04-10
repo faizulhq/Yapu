@@ -17,16 +17,7 @@ const misi = [
   "Mengembangkan aktivitas ekonomi berbasis kewirausahaan untuk pemberdayaan dan kemandirian umat.",
 ];
 
-const pengurus = [
-  { nama: "Prof. Dr. Cartono, S.Pd., M.Pd., M.T", jabatan: "Ketua Umum", inisial: "C" },
-  { nama: "H. Muhammad Hasan, B.Sc", jabatan: "Pembina", inisial: "H" },
-  { nama: "Drs. Ikhsan Matondang, M.Si", jabatan: "Pengawas", inisial: "I" },
-  { nama: "Dedi Herdiyana, S.T", jabatan: "Pengawas", inisial: "D" },
-  { nama: "Aji Pamoso, S.Si, M.T", jabatan: "Sekretaris I", inisial: "A" },
-  { nama: "Maryam Nurbaitsah Haq, S.Mat", jabatan: "Sekretaris II", inisial: "M" },
-  { nama: "Ayi Sugandhi, S.T", jabatan: "Bendahara I", inisial: "A" },
-  { nama: "Annisa Nahdliatul Haq, S.P", jabatan: "Bendahara II", inisial: "A" },
-];
+/* The board data is now structured directly via the unified org chart section below. */
 
 const nilaiUtama = [
   { icon: "shield", label: "Amanah", desc: "Setiap kepercayaan dan donasi dijaga dengan penuh tanggung jawab dan integritas." },
@@ -178,29 +169,173 @@ export default function TentangKamiPage() {
         </div>
       </section>
 
-      {/* ── STRUKTUR KEPENGURUSAN ── */}
-      <section className="py-20 bg-surface-container-low">
+      {/* ── STRUKTUR KEPENGURUSAN (ORG CHART) ── */}
+      <section className="py-24 bg-surface-container-lowest overflow-hidden font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 text-secondary font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               <span className="w-8 h-0.5 bg-secondary" />
               Kepengurusan
               <span className="w-8 h-0.5 bg-secondary" />
             </div>
-            <h2 className="text-3xl font-extrabold text-primary" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              Struktur Pengurus YAPU
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              Struktur Organisasi YAPU
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {pengurus.map((p, i) => (
-              <div key={i} className="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-outline-variant/10 hover:shadow-xl hover:-translate-y-1 transition-all text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center text-2xl font-bold mx-auto mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  {p.inisial}
-                </div>
-                <p className="text-[10px] font-extrabold text-secondary uppercase tracking-wider mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{p.jabatan}</p>
-                <h3 className="font-bold text-on-surface text-sm leading-snug">{p.nama}</h3>
+
+          <div className="relative flex flex-col items-center select-none text-sm w-full mx-auto max-w-5xl">
+            
+            {/* LEVEL 1: Pembina */}
+            <div className="relative z-10 bg-gradient-to-br from-[#E8A020] to-[#d69018] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(232,160,32,0.2)] w-[280px] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(232,160,32,0.4)] transition-all">
+               <p className="underline underline-offset-4 mb-2 text-sm uppercase tracking-widest font-bold">Pembina</p>
+               <p className="font-normal text-[15px]">H. Muhammad Hasan, B.Sc</p>
+            </div>
+
+            {/* Line down to Ketua (Dashed) */}
+            <div className="hidden md:block w-[2px] h-[50px] border-l-[2px] border-dashed border-[#2D5016] z-0"></div>
+            <div className="md:hidden w-[2px] h-[30px] border-l-[2px] border-dashed border-[#2D5016] my-2 relative"></div>
+
+            {/* LEVEL 2: Ketua + Pengawas */}
+            <div className="relative z-10 flex flex-col md:flex-row justify-center items-center w-full">
+               
+               {/* Ketua */}
+               <div className="relative bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-[280px] text-center z-20 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                 <p className="underline underline-offset-4 mb-2 text-sm uppercase tracking-widest font-bold">Ketua</p>
+                 <p className="font-normal text-[15px]">Prof. Dr. Cartono, S.Pd., M.Pd., M.T</p>
+               </div>
+
+               {/* Horizontal Dashed Line (Pengawas to Ketua) */}
+               <div className="hidden md:block absolute left-1/2 top-1/2 w-[160px] lg:w-[220px] border-t-[2px] border-dashed border-[#2D5016] -translate-x-full -translate-y-1/2 z-0"></div>
+
+               {/* Pengawas (Desktop - LEFT Side) */}
+               <div className="hidden md:block absolute right-[calc(50%+160px)] lg:right-[calc(50%+220px)] top-1/2 -translate-y-1/2 z-10 w-[260px] bg-gradient-to-br from-[#E8A020] to-[#d69018] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(232,160,32,0.2)] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(232,160,32,0.4)] transition-all">
+                 <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Pengawas</p>
+                 <ol className="text-[14px] font-normal text-left list-none space-y-1 w-max mx-auto">
+                   <li>1. Drs. Ikhsan Matondang, M.Si</li>
+                   <li>2. Dedi Herdiyana, S.T</li>
+                 </ol>
+               </div>
+               
+               {/* Pengawas (Mobile display) */}
+               <div className="md:hidden w-[280px] mt-4 flex flex-col items-center">
+                 <div className="w-[2px] h-[20px] border-l-[2px] border-dashed border-[#2D5016] mb-2"></div>
+                 <div className="bg-gradient-to-br from-[#E8A020] to-[#d69018] text-white w-full rounded-2xl p-6 shadow-[0_8px_30px_rgb(232,160,32,0.2)] text-center">
+                   <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Pengawas</p>
+                   <ol className="text-sm font-normal text-left list-none space-y-1 w-max mx-auto">
+                     <li>1. Drs. Ikhsan Matondang, M.Si</li>
+                     <li>2. Dedi Herdiyana, S.T</li>
+                   </ol>
+                 </div>
+               </div>
+            </div>
+
+            {/* Line down to Sek/Ben Branch */}
+            <div className="hidden md:block h-[50px] w-[2px] bg-[#2D5016] z-0"></div>
+
+            {/* LEVEL 3: Sekretaris & Bendahara */}
+            <div className="relative z-10 flex flex-col md:flex-row justify-center items-center w-full mt-6 md:mt-0">
+               <div className="md:hidden w-[2px] h-[30px] bg-[#2D5016] -mt-2"></div>
+               
+               {/* Sekretaris */}
+               <div className="relative w-[300px] md:mr-[100px] lg:mr-[160px] bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(45,80,22,0.2)] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                 <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Sekretaris</p>
+                 <div className="space-y-1 text-[13px] font-normal leading-relaxed text-left pl-2">
+                   <div>Sekretaris I&nbsp;&nbsp;&nbsp;: Aji Pamoso, S.Si, M.T</div>
+                   <div>Sekretaris II&nbsp;: Maryam Nurbaitsah Haq, S.Mat</div>
+                 </div>
+               </div>
+
+               {/* Central horizontal line connecting Sek and Ben directly to the middle trunk */}
+               <div className="hidden md:block absolute left-[50%] top-1/2 w-[calc(50vw)] max-w-[400px] border-t-[2px] border-[#2D5016] -translate-x-1/2 -translate-y-1/2 z-[-1]"></div>
+               {/* Central vertical trunk passing through */}
+               <div className="hidden md:block absolute left-1/2 top-[-50px] bottom-[-50px] w-[2px] bg-[#2D5016] -translate-x-1/2 z-[-2]"></div>
+
+               <div className="md:hidden w-[2px] h-[30px] bg-[#2D5016] my-2"></div>
+
+               {/* Bendahara */}
+               <div className="relative w-[300px] md:ml-[100px] lg:ml-[160px] bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(45,80,22,0.2)] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                 <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Bendahara</p>
+                 <div className="space-y-1 text-[13px] font-normal leading-relaxed text-left pl-2">
+                   <div>Bendahara I&nbsp;&nbsp;&nbsp;: Ayi Sugandhi, S.T</div>
+                   <div>Bendahara II&nbsp;: Annisa Nahdliatul Haq, S.P</div>
+                 </div>
+               </div>
+            </div>
+
+            {/* LEVEL 4: 6 Bidang */}
+            <div className="relative mt-8 md:mt-[50px] w-full flex flex-col items-center z-10 block">
+              
+              {/* Massive Horizontal Comb Bar */}
+              <div className="hidden md:block absolute top-[0px] left-1/2 -translate-x-1/2 w-[600px] h-[2px] bg-[#2D5016] z-0">
+                 {/* Waterfall Lines */}
+                 <div className="absolute top-0 h-[40px] left-[260px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 1: Inner */}
+                 <div className="absolute top-0 h-[190px] left-[130px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 2: Middle */}
+                 <div className="absolute top-0 h-[340px] left-[0px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 3: Outer */}
+
+                 <div className="absolute top-0 h-[40px] right-[260px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 1: Inner */}
+                 <div className="absolute top-0 h-[190px] right-[130px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 2: Middle */}
+                 <div className="absolute top-0 h-[340px] right-[0px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 3: Outer */}
               </div>
-            ))}
+
+              {/* Grid of 6 Boxes */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[60px] gap-y-[40px] w-max mx-auto mt-[0px] md:mt-[40px] relative z-20">
+                
+                {/* --- ROW 1 --- */}
+                {/* Sosial */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Sosial dan Keagamaan</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight opacity-90">
+                     <p>Ketua : Nurdin Halekdin, S.T</p>
+                     <p>Wakil : Rinaldi M Azka, S.I.Kom</p>
+                  </div>
+                </div>
+                {/* Keakhwatan */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Keakhwatan dan Keluarga</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight opacity-90">
+                     <p>Ketua : Dra. Tuti Gantini</p>
+                     <p>Wakil : Eva Mardhiana, S.Ag</p>
+                  </div>
+                </div>
+
+                {/* --- ROW 2 --- */}
+                {/* Kesehatan */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Kesehatan dan Lingkungan</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight flex flex-col items-center opacity-90">
+                     <div className="flex text-left"><span className="min-w-[45px]">Ketua</span><span>: Lika Apriani, dr., M.Sc, PhD</span></div>
+                     <div className="flex text-left"><span className="min-w-[45px]">Wakil</span><span>: Apt Qonita Zahra, S.Farm</span></div>
+                  </div>
+                </div>
+                {/* Pendidikan */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Pendidikan dan Pembinaan Umat</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight flex flex-col items-center opacity-90">
+                     <div className="flex text-left"><span className="min-w-[45px]">Ketua</span><span>: Djoko Arisworo, S.Si, M.Pd</span></div>
+                     <div className="flex text-left"><span className="min-w-[45px]">Wakil</span><span>: Qonita Raihani F, S.T.P</span></div>
+                  </div>
+                </div>
+
+                {/* --- ROW 3 --- */}
+                {/* TI */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Teknologi Media Informasi dan Publikasi</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight opacity-90">
+                     <p>Ketua : Yusuf Priyanto, A.Md</p>
+                     <p>Wakil : Umar Abdul Aziz, A.Md</p>
+                  </div>
+                </div>
+                {/* Ekonomi */}
+                <div className="bg-gradient-to-br from-[#2D5016] to-[#223d11] text-white rounded-2xl p-5 shadow-[0_8px_30px_rgb(45,80,22,0.2)] w-full md:w-[320px] flex flex-col items-center justify-center text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(45,80,22,0.4)] transition-all">
+                  <p className="underline underline-offset-4 mb-3 text-xs font-bold tracking-wide uppercase"><span className="text-[10px] font-semibold opacity-80">Bidang</span><br/>Ekonomi & Pemberdayaan Umat</p>
+                  <div className="space-y-[4px] font-normal text-[13px] leading-tight opacity-90">
+                     <p>Ketua : Dadan Saepulloh, S.Kom, M.Stat</p>
+                     <p>Wakil : Arif Dzikrullah, S.T</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </section>
