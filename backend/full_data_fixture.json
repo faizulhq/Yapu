@@ -1,0 +1,80 @@
+[
+{
+  "model": "articles.article",
+  "pk": 1,
+  "fields": {
+    "title": "Laporan Bakti Sosial Marhaban Ya Ramadan 1447H",
+    "slug": "laporan-bakti-sosial-marhaban-ya-ramadan-1447h",
+    "category": "laporan",
+    "excerpt": "YAPU kembali menggelar rangkaian kegiatan Bakti Sosial Marhaban Ya Ramadan 1447H yang melibatkan ribuan penerima manfaat di berbagai wilayah, mulai dari Cilacap, Bekasi, Bandung, Garut, Cianjur, hingga Bogor.",
+    "content": "<h2>Alhamdulillah, YAPU Kembali Hadir untuk Umat</h2>\r\n\r\n<p>Yayasan Amanah Peduli Umat (YAPU) kembali menggelar rangkaian kegiatan Bakti Sosial Marhaban Ya Ramadan 1447H pada tanggal 21 Februari 2026. Program ini menjangkau berbagai wilayah di Pulau Jawa dengan melibatkan ratusan relawan dan menyentuh kehidupan ribuan penerima manfaat.</p>\r\n\r\n<h2>Rangkaian Kegiatan</h2>\r\n\r\n<h3>1. Gerakan Tanam Pohon</h3>\r\n\r\n<p>Sebagai bentuk kepedulian terhadap lingkungan, YAPU bersama relawan dan masyarakat setempat melaksanakan penanaman pohon di beberapa titik lokasi. Kegiatan ini merupakan bagian dari target besar Gerakan Tanam 10.000 Pohon YAPU.</p>\r\n\r\n<h3>2. Pasar Murah</h3>\r\n\r\n<p>Paket sembako dengan harga terjangkau disediakan untuk meringankan beban masyarakat berpenghasilan rendah menjelang Ramadan. Berbagai kebutuhan pokok seperti beras, minyak goreng, gula, dan tepung terigu tersedia dengan harga yang sangat terjangkau.</p>\r\n\r\n<h3>3. Pengajian Umum</h3>\r\n\r\n<p>Rangkaian acara dimeriahkan dengan pengajian umum yang menghadirkan ustaz tamu dari berbagai daerah. Kegiatan ini bertujuan menyambut bulan suci Ramadan dengan memperkuat keimanan dan ukhuwah islamiyah.</p>\r\n\r\n<h3>4. Santunan Anak Yatim &amp; Sembako</h3>\r\n\r\n<p>YAPU menyerahkan santunan tunai dan paket sembako kepada ratusan anak yatim dan keluarga dhuafa di setiap titik pelaksanaan. Senyum dan kebahagiaan terpancar dari wajah para penerima manfaat yang merasakan langsung kepedulian YAPU.</p>\r\n\r\n<h3>5. Khitanan Massal</h3>\r\n\r\n<p>Program layanan kesehatan berupa khitanan massal dilaksanakan secara gratis di Cilacap, dengan melibatkan tenaga medis profesional dan didukung peralatan kesehatan yang memadai. Lebih dari 50 anak dari keluarga kurang mampu mendapat layanan ini.</p>\r\n\r\n<h2>Wilayah Jangkauan</h2>\r\n\r\n<ul>\r\n\t<li><strong>Majenang, Cilacap</strong> &mdash; 300+ penerima manfaat</li>\r\n\t<li><strong>Bekasi</strong> &mdash; 96+ penerima manfaat</li>\r\n\t<li><strong>Bandung</strong> &mdash; 200+ penerima manfaat</li>\r\n\t<li><strong>Garut</strong> &mdash; 23+ penerima manfaat</li>\r\n\t<li><strong>Cianjur</strong> &mdash; 45+ penerima manfaat</li>\r\n\t<li><strong>Bogor</strong> &mdash; 19+ penerima manfaat</li>\r\n</ul>\r\n\r\n<h2>Ucapan Terima Kasih</h2>\r\n\r\n<p>Seluruh kegiatan ini tidak akan terwujud tanpa dukungan para donatur, relawan, dan mitra yang telah mempercayakan amanah kepada YAPU. Jazakumullahu khairan katsiran. Semoga Allah SWT membalas setiap kebaikan dengan berlipat-lipat kebaikan.</p>",
+    "cover_image": "https://res.cloudinary.com/drturcggf/image/upload/v1775652134/IMG_5061_2_dqtjmv.jpg",
+    "author": "Tim YAPU",
+    "published_at": "2026-02-21T01:00:00Z",
+    "is_published": true,
+    "related_program": null,
+    "created_at": "2026-04-09T15:01:16.029Z",
+    "updated_at": "2026-04-09T16:21:11.803Z"
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 1,
+  "fields": {
+    "label": "Lokasi Jangkauan",
+    "value": "27",
+    "icon": "🗺️",
+    "order": 1
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 2,
+  "fields": {
+    "label": "Penerima Manfaat Dhuafa",
+    "value": "1.000+",
+    "icon": "👥",
+    "order": 2
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 3,
+  "fields": {
+    "label": "Anak Yatim Disantuni",
+    "value": "1.000+",
+    "icon": "🧒",
+    "order": 3
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 4,
+  "fields": {
+    "label": "Peserta Khitan",
+    "value": "300+",
+    "icon": "✂️",
+    "order": 4
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 5,
+  "fields": {
+    "label": "Hewan Qurban",
+    "value": "170+",
+    "icon": "🐄",
+    "order": 5
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 6,
+  "fields": {
+    "label": "Peserta Katarak",
+    "value": "60+",
+    "icon": "👁️",
+    "order": 6
+  }
+}
+]
