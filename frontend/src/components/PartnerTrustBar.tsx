@@ -1,14 +1,14 @@
 "use client";
 
 const PARTNERS = [
-  { name: "Bank BRI",        icon: "account_balance" },
-  { name: "FK Unpad",        icon: "school" },
-  { name: "PMI",             icon: "emergency" },
-  { name: "BAZNAS",          icon: "volunteer_activism" },
-  { name: "Pemkot Bandung",  icon: "location_city" },
-  { name: "Rumah Zakat",     icon: "home" },
-  { name: "BGS Jabar",       icon: "groups" },
-  { name: "Dinas Sosial",    icon: "handshake" },
+  { name: "Bank Mandiri",              icon: "account_balance" },
+  { name: "BPDAS Pemali Jratun",       icon: "eco" },
+  { name: "INSIMA",                    icon: "school" },
+  { name: "Badan Pangan Nasional",     icon: "restaurant" },
+  { name: "Pengurus NU Cilacap",       icon: "volunteer_activism" },
+  { name: "Puskesmas Majenang",        icon: "local_hospital" },
+  { name: "Paguyuban Jateng",          icon: "groups" },
+  { name: "Dinas LHK Jateng",      icon: "nature" },
 ];
 
 export default function PartnerTrustBar() {

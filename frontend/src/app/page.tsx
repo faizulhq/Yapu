@@ -305,7 +305,7 @@ export default async function HomePage() {
           </p>
           <div className="flex flex-wrap gap-4 items-center justify-center">
             {(partnerList.length > 0 ? partnerList.map((p) => p.name) : [
-              "Bank BRI", "FK Unpad", "Universitas Pasundan", "Bank Mandiri", "PMI Kota Bandung", "BAZNAS Jabar", "LazizNU", "Rumah Zakat"
+              "Bank Mandiri", "BPDAS Pemali Jratun", "Pengurus NU Cilacap", "INSIMA Majenang", "Paguyuban Jawa Tengah", "Badan Pangan Nasional", "UPTD Puskesmas Majenang II", "Dinas LHK Jateng"
             ]).map((name) => (
               <span key={name} className="px-5 py-2.5 rounded-full border border-outline-variant text-on-surface-variant text-sm font-semibold hover:border-primary hover:text-primary transition-all cursor-default" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                 {name}
