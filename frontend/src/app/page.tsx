@@ -19,12 +19,11 @@ export const revalidate = 60;
 
 /* ─── fallback stats ─── */
 const FALLBACK_STATS = [
-  { id: 1, label: "Lokasi Jangkauan", value: "27", icon: "🗺️", order: 1 },
-  { id: 2, label: "Penerima Manfaat Dhuafa", value: "1.000+", icon: "👥", order: 2 },
-  { id: 3, label: "Anak Yatim Disantuni", value: "1.000+", icon: "🧒", order: 3 },
-  { id: 4, label: "Peserta Khitan", value: "300+", icon: "✂️", order: 4 },
-  { id: 5, label: "Hewan Qurban", value: "170+", icon: "🐄", order: 5 },
-  { id: 6, label: "Peserta Katarak", value: "60+", icon: "👁️", order: 6 },
+  { id: 1, label: "Wilayah Jangkauan", value: "7", icon: "🗺️", order: 1 },
+  { id: 2, label: "Penerima Paket Sembako", value: "620", icon: "👥", order: 2 },
+  { id: 3, label: "Anak Yatim Disantuni", value: "45", icon: "🧒", order: 3 },
+  { id: 4, label: "Peserta Khitan", value: "68", icon: "✂️", order: 4 },
+  { id: 5, label: "Pohon Ditanam", value: "4.000", icon: "🌳", order: 5 },
 ];
 
 /* ─── fokus kerja tabs content ─── */
