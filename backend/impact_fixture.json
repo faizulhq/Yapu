@@ -1,0 +1,146 @@
+[
+{
+  "model": "impact.impactstat",
+  "pk": 1,
+  "fields": {
+    "label": "Lokasi Jangkauan",
+    "value": "27",
+    "icon": "ðŸ—ºï¸�",
+    "order": 1
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 2,
+  "fields": {
+    "label": "Penerima Manfaat Dhuafa",
+    "value": "1.000+",
+    "icon": "ðŸ‘¥",
+    "order": 2
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 3,
+  "fields": {
+    "label": "Anak Yatim Disantuni",
+    "value": "1.000+",
+    "icon": "ðŸ§’",
+    "order": 3
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 4,
+  "fields": {
+    "label": "Peserta Khitan",
+    "value": "300+",
+    "icon": "âœ‚ï¸�",
+    "order": 4
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 5,
+  "fields": {
+    "label": "Hewan Qurban",
+    "value": "170+",
+    "icon": "ðŸ�„",
+    "order": 5
+  }
+},
+{
+  "model": "impact.impactstat",
+  "pk": 6,
+  "fields": {
+    "label": "Peserta Katarak",
+    "value": "60+",
+    "icon": "ðŸ‘�ï¸�",
+    "order": 6
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 1,
+  "fields": {
+    "name": "Majenang",
+    "province": "Jawa Tengah",
+    "latitude": -7.6589,
+    "longitude": 108.7767,
+    "beneficiaries_count": 300,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 2,
+  "fields": {
+    "name": "Bekasi",
+    "province": "Jawa Barat",
+    "latitude": -6.2383,
+    "longitude": 107.0,
+    "beneficiaries_count": 96,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 3,
+  "fields": {
+    "name": "Jakarta Timur",
+    "province": "DKI Jakarta",
+    "latitude": -6.2251,
+    "longitude": 106.9004,
+    "beneficiaries_count": 20,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 4,
+  "fields": {
+    "name": "Bandung",
+    "province": "Jawa Barat",
+    "latitude": -6.9175,
+    "longitude": 107.6191,
+    "beneficiaries_count": 200,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 5,
+  "fields": {
+    "name": "Garut",
+    "province": "Jawa Barat",
+    "latitude": -7.2167,
+    "longitude": 107.9,
+    "beneficiaries_count": 23,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 6,
+  "fields": {
+    "name": "Cianjur",
+    "province": "Jawa Barat",
+    "latitude": -6.82,
+    "longitude": 107.14,
+    "beneficiaries_count": 45,
+    "program": null
+  }
+},
+{
+  "model": "impact.impactlocation",
+  "pk": 7,
+  "fields": {
+    "name": "Bogor",
+    "province": "Jawa Barat",
+    "latitude": -6.5971,
+    "longitude": 106.806,
+    "beneficiaries_count": 19,
+    "program": null
+  }
+}
+]
