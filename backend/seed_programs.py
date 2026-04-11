@@ -331,39 +331,69 @@ EXECUTION_DATA = {
     ],
 }
 
+# ─── META DATA (title, category, status, order) PER PROGRAM ─────────────────
+
+PROGRAM_META = {
+    "khitanan-massal":       {"title": "Khitanan Massal",                "category": "kesehatan",  "status": "aktif",    "display_order": 3, "is_featured": True},
+    "pemberian-paket-sembako":{"title": "Pemberian Paket Sembako",        "category": "sosial",     "status": "aktif",    "display_order": 1, "is_featured": True},
+    "santunan-anak-yatim":   {"title": "Santunan Anak Yatim",            "category": "sosial",     "status": "aktif",    "display_order": 2, "is_featured": True},
+    "penanaman-pohon":       {"title": "Penanaman Pohon",                "category": "lingkungan", "status": "aktif",    "display_order": 6, "is_featured": False},
+    "pasar-murah":           {"title": "Pasar Murah",                    "category": "ekonomi",    "status": "aktif",    "display_order": 5, "is_featured": False},
+    "pengajian-umum":        {"title": "Pengajian Umum",                 "category": "keagamaan",  "status": "aktif",    "display_order": 7, "is_featured": False},
+    "operasi-katarak":       {"title": "Operasi Katarak",                "category": "kesehatan",  "status": "aktif",    "display_order": 4, "is_featured": True},
+    "program-qurban":        {"title": "Program Qurban",                 "category": "sosial",     "status": "terencana","display_order": 8, "is_featured": False},
+}
+
 # ─── SEED LOGIC ──────────────────────────────────────────────────────────────
 
 def run():
-    print("🌱 Starting seed...\n")
+    print("Starting seed...\n")
+    created_count = 0
     updated_count = 0
     execution_count = 0
     location_count = 0
 
     for slug, data in PROGRAM_DATA.items():
-        try:
-            program = Program.objects.get(slug=slug)
-        except Program.DoesNotExist:
-            print(f"  ⚠️  Program '{slug}' not found — skipping.")
-            continue
+        meta = PROGRAM_META.get(slug, {})
 
-        program.description = data["description"]
-        program.content = data["content"]
-        program.beneficiary_label = data.get("beneficiary_label", "Penerima Manfaat")
-        program.save()
-        print(f"  ✅ Updated content: [{slug}] {program.title}")
-        updated_count += 1
+        # Create or get the program
+        program, was_created = Program.objects.get_or_create(
+            slug=slug,
+            defaults={
+                "title":           meta.get("title", slug),
+                "category":        meta.get("category", "sosial"),
+                "status":          meta.get("status", "aktif"),
+                "display_order":   meta.get("display_order", 0),
+                "is_featured":     meta.get("is_featured", False),
+                "description":     data["description"],
+                "content":         data["content"],
+                "beneficiary_label": data.get("beneficiary_label", "Penerima Manfaat"),
+            }
+        )
+
+        if was_created:
+            print(f"  [CREATED] {slug} — {program.title}")
+            created_count += 1
+        else:
+            # Always update content fields
+            program.description      = data["description"]
+            program.content          = data["content"]
+            program.beneficiary_label = data.get("beneficiary_label", "Penerima Manfaat")
+            program.save()
+            print(f"  [UPDATED] {slug} — {program.title}")
+            updated_count += 1
 
         # Seed executions
         exec_list = EXECUTION_DATA.get(slug, [])
         for exec_data in exec_list:
             exec_data = dict(exec_data)  # copy to preserve original
             locations = exec_data.pop("locations", [])
-            exec_obj, created = ProgramExecution.objects.get_or_create(
+            exec_obj, exec_created = ProgramExecution.objects.get_or_create(
                 program=program,
                 title=exec_data["title"],
                 defaults=exec_data,
             )
-            if not created:
+            if not exec_created:
                 for k, v in exec_data.items():
                     setattr(exec_obj, k, v)
                 exec_obj.save()
@@ -375,9 +405,11 @@ def run():
                 location_count += 1
 
             execution_count += 1
-            print(f"     📅 {'Created' if created else 'Updated'} execution: {exec_obj.title} ({len(locations)} lokasi)")
+            status_str = "Created" if exec_created else "Updated"
+            print(f"     -> {status_str} execution: {exec_obj.title} ({len(locations)} lokasi)")
 
-    print(f"\n✨ Done! {updated_count} programs updated, {execution_count} executions seeded, {location_count} locations seeded.")
+    print(f"\nDone! {created_count} programs created, {updated_count} updated, {execution_count} executions seeded, {location_count} locations seeded.")
 
 if __name__ == "__main__":
     run()
+
