@@ -8,6 +8,25 @@ const api = axios.create({
 });
 
 // Types
+export interface ExecutionLocation {
+  id: number;
+  city: string;
+  beneficiaries: number;
+  note: string;
+}
+
+export interface ProgramExecution {
+  id: number;
+  title: string;
+  date_start: string;
+  date_end: string | null;
+  total_beneficiaries: number;
+  summary: string;
+  report_url: string;
+  order: number;
+  locations: ExecutionLocation[];
+}
+
 export interface Program {
   id: number;
   title: string;
@@ -20,8 +39,10 @@ export interface Program {
   content: string;
   image: string;
   is_featured: boolean;
+  beneficiary_label: string;
   created_at: string;
   updated_at: string;
+  executions: ProgramExecution[];
 }
 
 export interface Article {

@@ -208,12 +208,14 @@ export default function TentangKamiPage() {
                <div className="hidden md:block absolute left-1/2 top-1/2 w-[160px] lg:w-[220px] border-t-[2px] border-dashed border-[#2D5016] -translate-x-full -translate-y-1/2 z-0"></div>
 
                {/* Pengawas (Desktop - LEFT Side) */}
-               <div className="hidden md:block absolute right-[calc(50%+160px)] lg:right-[calc(50%+220px)] top-1/2 -translate-y-1/2 z-10 w-[260px] bg-gradient-to-br from-[#E8A020] to-[#d69018] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(232,160,32,0.2)] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(232,160,32,0.4)] transition-all">
-                 <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Pengawas</p>
-                 <ol className="text-[14px] font-normal text-left list-none space-y-1 w-max mx-auto">
-                   <li>1. Drs. Ikhsan Matondang, M.Si</li>
-                   <li>2. Dedi Herdiyana, S.T</li>
-                 </ol>
+               <div className="hidden md:block absolute right-[calc(50%+160px)] lg:right-[calc(50%+220px)] top-1/2 -translate-y-1/2 z-10 w-[260px]">
+                 <div className="bg-gradient-to-br from-[#E8A020] to-[#d69018] text-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(232,160,32,0.2)] text-center hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(232,160,32,0.4)] transition-all">
+                   <p className="underline underline-offset-4 mb-3 text-sm uppercase tracking-widest font-bold">Pengawas</p>
+                   <ol className="text-[14px] font-normal text-left list-none space-y-1 w-max mx-auto">
+                     <li>1. Drs. Ikhsan Matondang, M.Si</li>
+                     <li>2. Dedi Herdiyana, S.T</li>
+                   </ol>
+                 </div>
                </div>
                
                {/* Pengawas (Mobile display) */}
@@ -266,15 +268,22 @@ export default function TentangKamiPage() {
             <div className="relative mt-8 md:mt-[50px] w-full flex flex-col items-center z-10 block">
               
               {/* Massive Horizontal Comb Bar */}
-              <div className="hidden md:block absolute top-[0px] left-1/2 -translate-x-1/2 w-[600px] h-[2px] bg-[#2D5016] z-0">
-                 {/* Waterfall Lines */}
-                 <div className="absolute top-0 h-[40px] left-[260px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 1: Inner */}
-                 <div className="absolute top-0 h-[190px] left-[130px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 2: Middle */}
-                 <div className="absolute top-0 h-[340px] left-[0px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 3: Outer */}
+              <div className="hidden md:block absolute top-[0px] left-1/2 -translate-x-1/2 w-[540px] h-[2px] bg-[#2D5016] z-0">
+                 {/* Waterfall Lines - Left Column */}
+                 {/* Row 3 Line (Outer left) - drops to the 3rd box, hits left side of card */}
+                 <div className="absolute top-0 h-[440px] left-[0px] w-[2px] bg-[#2D5016] -z-10"></div>
+                 {/* Row 2 Line (Middle left) - drops to the 2nd box, hits middle of card */}
+                 <div className="absolute top-0 h-[260px] left-[80px] w-[2px] bg-[#2D5016] -z-10"></div>
+                 {/* Row 1 Line (Inner left) - drops to the 1st box, hits right side of card */}
+                 <div className="absolute top-0 h-[80px] left-[160px] w-[2px] bg-[#2D5016] -z-10"></div>
 
-                 <div className="absolute top-0 h-[40px] right-[260px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 1: Inner */}
-                 <div className="absolute top-0 h-[190px] right-[130px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 2: Middle */}
-                 <div className="absolute top-0 h-[340px] right-[0px] w-[2px] bg-[#2D5016] -z-10"></div> {/* Row 3: Outer */}
+                 {/* Waterfall Lines - Right Column */}
+                 {/* Row 1 Line (Inner right) - drops to the 1st box, hits left side of card */}
+                 <div className="absolute top-0 h-[80px] right-[160px] w-[2px] bg-[#2D5016] -z-10"></div>
+                 {/* Row 2 Line (Middle right) - drops to the 2nd box, hits middle of card */}
+                 <div className="absolute top-0 h-[260px] right-[80px] w-[2px] bg-[#2D5016] -z-10"></div>
+                 {/* Row 3 Line (Outer right) - drops to the 3rd box, hits right side of card */}
+                 <div className="absolute top-0 h-[440px] right-[0px] w-[2px] bg-[#2D5016] -z-10"></div>
               </div>
 
               {/* Grid of 6 Boxes */}

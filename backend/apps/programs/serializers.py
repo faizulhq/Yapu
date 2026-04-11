@@ -1,5 +1,23 @@
 from rest_framework import serializers
-from .models import Program
+from .models import Program, ProgramExecution, ExecutionLocation
+
+
+class ExecutionLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExecutionLocation
+        fields = ['id', 'city', 'beneficiaries', 'note']
+
+
+class ProgramExecutionSerializer(serializers.ModelSerializer):
+    locations = ExecutionLocationSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ProgramExecution
+        fields = [
+            'id', 'title', 'date_start', 'date_end',
+            'total_beneficiaries', 'summary', 'report_url',
+            'order', 'locations',
+        ]
 
 
 class ProgramListSerializer(serializers.ModelSerializer):
@@ -16,6 +34,7 @@ class ProgramListSerializer(serializers.ModelSerializer):
 class ProgramDetailSerializer(serializers.ModelSerializer):
     category_display = serializers.CharField(source='get_category_display', read_only=True)
     status_display = serializers.CharField(source='get_status_display', read_only=True)
+    executions = ProgramExecutionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Program
