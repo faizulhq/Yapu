@@ -19,6 +19,14 @@ class Volunteer(models.Model):
     domicile = models.CharField(max_length=100, verbose_name='Domisili')
     message = models.TextField(blank=True, verbose_name='Pesan / Motivasi')
     submitted_at = models.DateTimeField(auto_now_add=True, verbose_name='Waktu Daftar')
+    
+    STATUS_CHOICES = [
+        ('baru', 'Pendaftar Baru'),
+        ('dihubungi', 'Sedang Dihubungi'),
+        ('aktif', 'Telah Bergabung'),
+        ('batal', 'Batal / Tidak Aktif'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='baru', verbose_name='Status')
 
     class Meta:
         verbose_name = 'Pendaftar Relawan'

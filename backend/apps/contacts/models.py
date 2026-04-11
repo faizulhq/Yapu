@@ -2,12 +2,17 @@ from django.db import models
 
 
 class ContactMessage(models.Model):
+    STATUS_CHOICES = [
+        ('baru', 'Pesan Baru'),
+        ('selesai', 'Sudah Selesai'),
+    ]
+
     full_name = models.CharField(max_length=200, verbose_name='Nama Lengkap')
     email = models.EmailField(verbose_name='Email')
     phone = models.CharField(max_length=20, blank=True, verbose_name='No. Telepon')
     message = models.TextField(verbose_name='Pesan')
     submitted_at = models.DateTimeField(auto_now_add=True, verbose_name='Waktu Kirim')
-    is_read = models.BooleanField(default=False, verbose_name='Sudah Dibaca')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='baru', verbose_name='Status')
 
     class Meta:
         verbose_name = 'Pesan Kontak'
@@ -27,6 +32,13 @@ class PartnershipInquiry(models.Model):
         ('lainnya', 'Lainnya'),
     ]
 
+    STATUS_CHOICES = [
+        ('baru', 'Baru'),
+        ('diskusi', 'Sedang Diskusi'),
+        ('deal', 'Deal / Disetujui'),
+        ('batal', 'Batal / Ditolak'),
+    ]
+
     institution_name = models.CharField(max_length=200, verbose_name='Nama Lembaga')
     pic_name = models.CharField(max_length=200, verbose_name='Nama PIC')
     email = models.EmailField(verbose_name='Email')
@@ -34,7 +46,7 @@ class PartnershipInquiry(models.Model):
     partnership_type = models.CharField(max_length=50, choices=PARTNERSHIP_TYPES, verbose_name='Jenis Kemitraan')
     message = models.TextField(verbose_name='Pesan')
     submitted_at = models.DateTimeField(auto_now_add=True, verbose_name='Waktu Kirim')
-    is_read = models.BooleanField(default=False, verbose_name='Sudah Dibaca')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='baru', verbose_name='Status')
 
     class Meta:
         verbose_name = 'Pengajuan Kemitraan'
