@@ -16,11 +16,39 @@ const statusBadge: Record<string, string> = {
 };
 
 export default function ProgramTabs({ programs }: Props) {
+  const [activeTab, setActiveTab] = useState("Semua");
+
+  // Extract unique categories (e.g. "sosial", "kesehatan", "pendidikan") and their display names
+  const categoryMap = new Map<string, string>();
+  categoryMap.set("Semua", "Semua");
+  programs.forEach((p) => categoryMap.set(p.category, p.category_display));
+  const tabs = Array.from(categoryMap.entries()).map(([id, label]) => ({ id, label }));
+
+  const filteredPrograms = activeTab === "Semua" ? programs : programs.filter((p) => p.category === activeTab);
+
   return (
     <div>
-      {/* Grid langsung — tanpa filter tab */}
+      {/* ── Tabs ── */}
+      <div className="flex flex-wrap gap-3 mb-10">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+              activeTab === tab.id
+                ? "bg-primary text-on-primary shadow-md"
+                : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border border-outline-variant/20"
+            }`}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {programs.map((program) => (
+        {filteredPrograms.map((program) => (
           <Link
             key={program.id}
             href={`/program/${program.slug}`}
