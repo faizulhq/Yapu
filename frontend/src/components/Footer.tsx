@@ -104,7 +104,14 @@ export default function Footer() {
           <ul className="space-y-3">
             <li className="flex gap-3 text-sm text-white/60">
               <MapPin size={15} className="shrink-0 mt-0.5 text-secondary-container" />
-              <span>Jl. Aditya A-23, Taman Cipadung Indah, Kel. Cipadung Kidul, Kec. Panyileukan, Kota Bandung 40614</span>
+              <a 
+                href="https://maps.app.goo.gl/nWVHww57mwMVZTbx9" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-secondary-container transition-colors"
+              >
+                Jl. Aditya A-23, Taman Cipadung Indah, Kel. Cipadung Kidul, Kec. Panyileukan, Kota Bandung 40614
+              </a>
             </li>
             <li className="flex gap-3 text-sm text-white/60">
               <Mail size={15} className="shrink-0 mt-0.5 text-secondary-container" />
