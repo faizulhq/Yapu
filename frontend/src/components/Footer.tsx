@@ -23,15 +23,16 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-8 py-16 max-w-7xl mx-auto">
         {/* Col 1 — Brand */}
         <div className="space-y-5">
-          <Image
-            src="https://res.cloudinary.com/drturcggf/image/upload/v1775542314/Logo-Yapu_lazleo.png"
-            alt="YAPU"
-            width={130}
-            height={44}
-            className="h-11 w-auto object-contain"
-            style={{ width: "auto" }}
-            unoptimized
-          />
+          <div className="bg-white p-2.5 rounded-2xl w-fit shadow-sm">
+            <Image
+              src="https://res.cloudinary.com/drturcggf/image/upload/v1775542314/Logo-Yapu_lazleo.png"
+              alt="YAPU"
+              width={120}
+              height={120}
+              className="h-14 w-auto object-contain"
+              unoptimized
+            />
+          </div>
           <p className="text-white/60 text-sm leading-relaxed">
             Amanah dalam Melayani, Peduli dalam Memberi.
           </p>
