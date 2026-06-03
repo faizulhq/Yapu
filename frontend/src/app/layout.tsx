@@ -50,27 +50,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://faizulhaq.pythonanywhere.com" />
 
-        {/* Material Symbols — loaded async to avoid render-blocking */}
+        {/* Material Symbols icons */}
         <link
-          rel="preload"
-          as="style"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-        />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              var l=document.createElement('link');
-              l.rel='stylesheet';
-              l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap';
-              document.head.appendChild(l);
-            `,
-          }}
+          rel="stylesheet"
         />
       </head>
       <body style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}>
