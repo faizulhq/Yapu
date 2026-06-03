@@ -16,11 +16,12 @@ export default function HeroVideo() {
           loop
           muted
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover object-center z-0"
           aria-hidden="true"
         >
           <source
-            src="https://res.cloudinary.com/drturcggf/video/upload/v1775538126/Auto-play_Video_qesy9j.mp4"
+            src="https://res.cloudinary.com/drturcggf/video/upload/v1780457534/hero-video-compressed_tvoaa8.mp4"
             type="video/mp4"
           />
         </video>

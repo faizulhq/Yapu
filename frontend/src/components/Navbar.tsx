@@ -46,6 +46,7 @@ export default function Navbar() {
               width={140}
               height={48}
               className={`h-12 w-auto transition-all ${logoFilter}`}
+              style={{ width: "auto" }}
               unoptimized
             />
           </Link>

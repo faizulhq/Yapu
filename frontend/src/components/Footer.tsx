@@ -30,6 +30,7 @@ export default function Footer() {
               width={120}
               height={120}
               className="h-14 w-auto object-contain"
+              style={{ width: "auto" }}
               unoptimized
             />
           </div>
