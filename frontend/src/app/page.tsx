@@ -17,6 +17,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
+// Helper: race API call against a short timeout so SSR is never blocked
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(`API timeout after ${ms}ms`)), ms)
+    ),
+  ]);
+}
+
 /* ─── fallback stats ─── */
 const FALLBACK_STATS = [
   { id: 1, label: "Wilayah Jangkauan", value: "7", icon: "🗺️", order: 1 },
@@ -63,7 +73,7 @@ export default async function HomePage() {
     getArticles(undefined, 3),
     getImpactStats(),
     getImpactLocations(),
-    getPartners(),
+    withTimeout(getPartners(), 3000), // 3s max — non-critical, has fallback
   ]);
 
   const programList = programs.status === "fulfilled" ? programs.value : [];
