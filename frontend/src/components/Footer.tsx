@@ -34,7 +34,7 @@ export default function Footer() {
               unoptimized
             />
           </div>
-          <p className="text-white/60 text-sm leading-relaxed">
+          <p className="text-white/75 text-sm leading-relaxed">
             Amanah dalam Melayani, Peduli dalam Memberi.
           </p>
           <div className="flex gap-3">
@@ -73,7 +73,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {menu1.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/60 hover:text-secondary-container transition-colors">
+                <Link href={item.href} className="text-sm text-white/75 hover:text-secondary-container transition-colors">
                   {item.label}
                 </Link>
               </li>
@@ -89,7 +89,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {menu2.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/60 hover:text-secondary-container transition-colors">
+                <Link href={item.href} className="text-sm text-white/75 hover:text-secondary-container transition-colors">
                   {item.label}
                 </Link>
               </li>
@@ -103,7 +103,7 @@ export default function Footer() {
             Kantor Pusat
           </h4>
           <ul className="space-y-3">
-            <li className="flex gap-3 text-sm text-white/60">
+            <li className="flex gap-3 text-sm text-white/75">
               <MapPin size={15} className="shrink-0 mt-0.5 text-secondary-container" />
               <a 
                 href="https://maps.app.goo.gl/nWVHww57mwMVZTbx9" 
@@ -114,13 +114,13 @@ export default function Footer() {
                 Jl. Aditya A-23, Taman Cipadung Indah, Kel. Cipadung Kidul, Kec. Panyileukan, Kota Bandung 40614
               </a>
             </li>
-            <li className="flex gap-3 text-sm text-white/60">
+            <li className="flex gap-3 text-sm text-white/75">
               <Mail size={15} className="shrink-0 mt-0.5 text-secondary-container" />
               <a href="mailto:sekretariatyapu@gmail.com" className="hover:text-secondary-container transition-colors break-all">
                 sekretariatyapu@gmail.com
               </a>
             </li>
-            <li className="flex gap-3 text-sm text-white/60">
+            <li className="flex gap-3 text-sm text-white/75">
               <Phone size={15} className="shrink-0 mt-0.5 text-secondary-container" />
               <a 
                 href="https://wa.me/6282240672888?text=Assalamualaikum%2C%20saya%20mengetahui%20nomor%20ini%20dari%20website%20YAPU." 
@@ -137,7 +137,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-8 py-6 max-w-7xl mx-auto text-center">
-        <p className="text-white/40 text-xs">
+        <p className="text-white/55 text-xs">
           © 2026 Yayasan Amanah Peduli Umat. Amanah dalam Melayani, Peduli dalam Memberi.
         </p>
       </div>

@@ -150,8 +150,10 @@ export const getImpactLocations = async (): Promise<ImpactLocation[]> => {
 
 // Partners
 export const getPartners = async (): Promise<Partner[]> => {
-  const { data } = await api.get<Partner[]>('/api/partners/');
-  return data;
+  const { data } = await api.get<PaginatedResponse<Partner> | Partner[]>('/api/partners/');
+  // Handle both paginated {results:[]} and plain array responses
+  const list = Array.isArray(data) ? data : data.results;
+  return list.filter((p) => p.is_active).sort((a, b) => a.order - b.order);
 };
 
 // Gallery

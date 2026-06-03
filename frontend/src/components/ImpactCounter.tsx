@@ -68,7 +68,7 @@ function StatItem({ stat, index, dark }: { stat: ImpactStat; index: number; dark
       >
         {displayVal}{suffix}
       </div>
-      <div className={`font-medium text-xs leading-tight ${dark ? "text-white/70" : "text-on-surface-variant"}`}>
+      <div className={`font-medium text-xs leading-tight ${dark ? "text-white/85" : "text-on-surface-variant"}`}>
         {stat.label}
       </div>
     </div>

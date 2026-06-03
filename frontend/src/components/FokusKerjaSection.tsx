@@ -118,7 +118,7 @@ export default function FokusKerjaSection() {
               {current.items.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-on-surface">
                   <span className="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[12px] text-on-secondary-container" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    <span className="material-symbols-outlined text-[12px] text-on-secondary-fixed" style={{ fontVariationSettings: "'FILL' 1" }}>
                       check
                     </span>
                   </span>

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Article } from "@/lib/api";
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
-  laporan: { bg: "bg-blue-100", text: "text-blue-700" },
-  edukasi: { bg: "bg-purple-100", text: "text-purple-700" },
-  berita:  { bg: "bg-secondary-container", text: "text-on-secondary-container" },
+  laporan: { bg: "bg-blue-100", text: "text-blue-800" },
+  edukasi: { bg: "bg-purple-100", text: "text-purple-800" },
+  berita:  { bg: "bg-secondary-container", text: "text-on-secondary-fixed" },
 };
 
 export default function NewsCard({ article }: { article: Article }) {
