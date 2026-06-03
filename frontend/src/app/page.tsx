@@ -72,8 +72,8 @@ export default async function HomePage() {
     getPrograms(),
     getArticles(undefined, 3),
     getImpactStats(),
-    getImpactLocations(),
-    withTimeout(getPartners(), 3000), // 3s max — non-critical, has fallback
+    withTimeout(getImpactLocations(), 3000), // below-fold, has fallback
+    withTimeout(getPartners(), 3000),        // below-fold, has fallback
   ]);
 
   const programList = programs.status === "fulfilled" ? programs.value : [];
@@ -180,7 +180,7 @@ export default async function HomePage() {
 
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 text-secondary-container/70 font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <div className="flex items-center justify-center gap-3 text-secondary-container font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               <span className="w-8 h-0.5 bg-secondary-container/50" />
               Jangkauan & Dampak
               <span className="w-8 h-0.5 bg-secondary-container/50" />
@@ -188,7 +188,7 @@ export default async function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               Wilayah &amp; Pencapaian YAPU
             </h2>
-            <p className="text-white/60 max-w-xl mx-auto text-sm">
+            <p className="text-white/80 max-w-xl mx-auto text-sm">
               Dari Bandung hingga seluruh penjuru Jawa Barat — setiap titik mewakili amanah yang kami emban.
             </p>
           </div>
@@ -218,7 +218,7 @@ export default async function HomePage() {
           {/* Divider */}
           <div className="flex items-center gap-4 mb-14">
             <span className="flex-1 h-px bg-white/10" />
-            <span className="text-white/40 text-xs uppercase tracking-widest font-bold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pencapaian Kami</span>
+            <span className="text-white/60 text-xs uppercase tracking-widest font-bold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Pencapaian Kami</span>
             <span className="flex-1 h-px bg-white/10" />
           </div>
 
@@ -266,7 +266,7 @@ export default async function HomePage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 text-on-primary-container/60 font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <div className="flex items-center justify-center gap-3 text-on-primary-container/80 font-bold tracking-widest text-xs uppercase mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               <span className="w-8 h-0.5 bg-on-primary-container/40" />
               Bergabung Bersama Kami
               <span className="w-8 h-0.5 bg-on-primary-container/40" />
@@ -274,7 +274,7 @@ export default async function HomePage() {
             <h2 className="text-4xl md:text-5xl font-extrabold text-on-primary mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               Mari Beraksi
             </h2>
-            <p className="text-on-primary/70 max-w-lg mx-auto text-sm">
+            <p className="text-on-primary/85 max-w-lg mx-auto text-sm">
               Setiap kontribusi Anda adalah amanah yang kami jaga. Pilih cara terbaik untuk ikut berperan dalam perubahan nyata.
             </p>
           </div>
@@ -290,7 +290,7 @@ export default async function HomePage() {
                   <span className="material-symbols-outlined text-3xl text-on-secondary-container" style={{ fontVariationSettings: "'FILL' 1" }}>{card.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{card.title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed mb-7">{card.desc}</p>
+                <p className="text-white/85 text-sm leading-relaxed mb-7">{card.desc}</p>
                 <Link
                   href={card.href}
                   className="inline-block bg-white text-primary-container font-bold px-6 py-2.5 rounded-full text-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all mt-auto"

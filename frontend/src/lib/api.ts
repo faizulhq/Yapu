@@ -4,7 +4,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const api = axios.create({
   baseURL: API_URL,
-  timeout: 60000, // Increased to 60s to accommodate slow PythonAnywhere cold starts
+  timeout: 10000, // 10s — fast fail for Vercel SSR; fallback data covers failures
 });
 
 // Types

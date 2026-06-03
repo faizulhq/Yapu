@@ -40,7 +40,7 @@ export default function MarqueeTicker() {
             >
               {item.icon}
             </span>
-            <span className="text-white/90">{item.text}</span>
+            <span className="text-white">{item.text}</span>
             <span className="ml-4 text-white/20 font-light">·</span>
           </span>
         ))}

@@ -16,7 +16,7 @@ export default function HeroVideo() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover object-center z-0"
           aria-hidden="true"
         >
